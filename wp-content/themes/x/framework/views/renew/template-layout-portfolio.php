@@ -13,7 +13,7 @@
   <div class="x-container max width offset">
     <div class="<?php x_main_content_class(); ?>" role="main">
 
-      <?php //x_get_view( 'global', '_portfolio' ); ?>
+      <?php x_get_view( 'global', '_portfolio' ); ?>
 
     </div>
 

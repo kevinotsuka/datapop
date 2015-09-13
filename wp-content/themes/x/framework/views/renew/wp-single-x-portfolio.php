@@ -14,7 +14,7 @@
     <div class="x-main full" role="main">
 
       <?php while ( have_posts() ) : the_post(); ?>
-        <?php x_get_view( 'renew', 'content', 'portfolio' ); ?>
+        <?php// x_get_view( 'renew', 'content', 'portfolio' ); ?>
         <?php x_get_view( 'global', '_comments-template' ); ?>
       <?php endwhile; ?>
 
