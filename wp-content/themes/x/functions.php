@@ -127,3 +127,12 @@ if ( X_WOOCOMMERCE_IS_ACTIVE ) {
 if ( X_WPML_IS_ACTIVE ) {
   require_once( $plgn_path . '/wpml.php' );
 }
+
+//kevin edits
+
+add_action('x_after_view_global__script-isotope-portfolio', 'enable_content_p'); //portfolio
+
+function enable_content_p () {
+$page = get_page( get_the_ID());
+echo '<div class="portfolio-page-content">'.apply_filters( 'the_content' , $page->post_content ).'</div>';
+}
