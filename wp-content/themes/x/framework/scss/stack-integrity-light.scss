@@ -12,14 +12,15 @@
 //   03. Grid System and Page Structure
 //   04. Base CSS
 //   05. Components
-//   06. Unique Site Styles
-//   07. Responsive Styles
-//   08. Internet Explorer
-//   09. Print Styles
-//   10. Admin Bar Styles
-//   11. Helper Classes
-//   12. Fonts
-//   13. Media Query Debugging
+//   06. Shortcodes
+//   07. Unique Site Styles
+//   08. Responsive Styles
+//   09. Internet Explorer
+//   10. Print Styles
+//   11. Animations
+//   12. Utilities
+//   13. Fonts
+//   14. Media Query Debugging
 // =============================================================================
 
 // Functions, Variables, and Mixins
@@ -45,7 +46,6 @@
 // =============================================================================
 
 @import "site/stacks/integrity/scaffolding";
-@import "site/stacks/integrity/grid";
 
 
 
@@ -55,6 +55,7 @@
 @import "site/stacks/integrity/type";
 @import "site/stacks/integrity/code";
 @import "site/stacks/integrity/forms";
+@import "site/tables";
 @import "site/stacks/integrity/tables";
 
 
@@ -69,6 +70,7 @@
 @import "site/stacks/integrity/widgetbar";
 @import "site/stacks/integrity/topbar";
 @import "site/stacks/integrity/logobar";
+@import "site/navbar";
 @import "site/stacks/integrity/navbar";
 @import "site/stacks/integrity/navs";
 @import "site/stacks/integrity/megamenu";
@@ -77,13 +79,21 @@
 @import "site/stacks/integrity/tooltips";
 @import "site/stacks/integrity/popovers";
 @import "site/stacks/integrity/flexslider";
-@import "site/stacks/integrity/slider-revolution";
-@import "site/stacks/integrity/jplayer";
-@import "site/stacks/integrity/bigvideo";
+@import "site/stacks/integrity/integrated-sliders";
 @import "site/stacks/integrity/isotope";
 @import "site/stacks/integrity/ilightbox";
 @import "site/stacks/integrity/social";
 @import "site/stacks/integrity/scroll-top";
+
+
+
+// Shortcodes
+// =============================================================================
+
+@import "site/shortcodes";
+@import "site/stacks/integrity/shortcodes";
+@import "site/mejs";
+@import "site/stacks/integrity/mejs";
 
 
 
@@ -104,12 +114,23 @@
 // =============================================================================
 
 //
-// 1. Tablets and below.
-// 2. Portrait tablet to default desktop.
+// 1. Global.
+// 2. Stack specific.
 //
 
-@import "site/stacks/integrity/resp/cubs"; // 1
-@import "site/stacks/integrity/resp/navbar"; // 2
+@import "site/resp/baby-bear";   // 1
+@import "site/resp/middle-bear"; // 1
+@import "site/resp/old-bear";    // 1
+@import "site/resp/cubs";        // 1
+@import "site/resp/mama-bear";   // 1
+@import "site/resp/papa-bear";   // 1
+
+@import "site/stacks/integrity/resp/baby-bear";   // 2
+@import "site/stacks/integrity/resp/middle-bear"; // 2
+@import "site/stacks/integrity/resp/old-bear";    // 2
+@import "site/stacks/integrity/resp/cubs";        // 2
+@import "site/stacks/integrity/resp/mama-bear";   // 2
+@import "site/stacks/integrity/resp/papa-bear";   // 2
 
 
 
@@ -127,14 +148,14 @@
 
 
 
-// Admin Bar Styles
+// Animations
 // =============================================================================
 
-@import "site/stacks/integrity/adminbar";
+@import "site/animate";
 
 
 
-// Helper Classes
+// Utilities
 // =============================================================================
 
 @import "site/util/main";
@@ -147,8 +168,7 @@
 // Fonts
 // =============================================================================
 
-@import "site/fonts";
-@import "site/stacks/integrity/fonts";
+@import "site/font-awesome";
 
 
 

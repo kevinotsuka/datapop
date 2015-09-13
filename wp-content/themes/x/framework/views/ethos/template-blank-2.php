@@ -10,25 +10,24 @@
 
 <?php get_header(); ?>
 
-    <div class="x-container-fluid max width main">
-      <div class="offset cf">
-        <div class="x-main full" role="main">
-          <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-            <div class="entry-wrap entry-content">
+  <div class="x-container max width main">
+    <div class="offset cf">
+      <div class="x-main full" role="main">
+        <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+          <div class="entry-wrap entry-content">
 
-              <?php while ( have_posts() ) : the_post(); ?>
-                <?php the_content(); ?>
-                <?php x_link_pages(); ?>
-              <?php endwhile; ?>
+            <?php while ( have_posts() ) : the_post(); ?>
+              <?php the_content(); ?>
+              <?php x_link_pages(); ?>
+            <?php endwhile; ?>
 
-            </div>
-            <?php x_google_authorship_meta(); ?>
-          </article>
-        </div>
+          </div>
+        </article>
       </div>
     </div>
-  </div> <!-- end .site -->
+  </div>
 
   <?php x_get_view( 'global', '_header', 'widget-areas' ); ?>
   <?php x_get_view( 'global', '_footer', 'scroll-top' ); ?>
+
 <?php x_get_view( 'global', '_footer' ); ?>

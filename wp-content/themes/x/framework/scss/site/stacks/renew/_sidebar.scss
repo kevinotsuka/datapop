@@ -15,7 +15,7 @@
 
 .x-sidebar {
   @include break(cubs) {
-    margin-top: 2em;
+    margin-top: $baseMargin + 2;
   }
 
   .widget {

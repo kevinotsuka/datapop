@@ -6,7 +6,7 @@
 // Portfolio post output for Integrity.
 // =============================================================================
 
-$archive_share = x_get_option( 'x_integrity_portfolio_archive_post_sharing_enable' );
+$archive_share = x_get_option( 'x_integrity_portfolio_archive_post_sharing_enable', '' );
 
 ?>
 
@@ -37,7 +37,7 @@ $archive_share = x_get_option( 'x_integrity_portfolio_archive_post_sharing_enabl
         <h2 class="entry-title entry-title-portfolio">
           <a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to: "%s"', '__x__' ), the_title_attribute( 'echo=0' ) ) ); ?>"><?php x_the_alternate_title(); ?></a>
         </h2>
-        <?php if ( $archive_share == 1 ) : ?>
+        <?php if ( $archive_share == '1' ) : ?>
           <?php x_portfolio_item_social(); ?>
         <?php endif; ?>
       </header>
@@ -45,5 +45,4 @@ $archive_share = x_get_option( 'x_integrity_portfolio_archive_post_sharing_enabl
     <?php endif; ?>
 
   </div>
-  <?php x_google_authorship_meta(); ?>
 </article>

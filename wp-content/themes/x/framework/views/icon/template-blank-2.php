@@ -10,25 +10,24 @@
 
 <?php get_header(); ?>
 
-    <div class="x-main full" role="main">
+  <div class="x-main full" role="main">
 
-      <?php while ( have_posts() ) : the_post(); ?>
+    <?php while ( have_posts() ) : the_post(); ?>
 
-        <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-          <div class="x-container-fluid max width">
+      <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+        <div class="entry-wrap">
+          <div class="x-container max width">
             <?php x_get_view( 'global', '_content', 'the-content' ); ?>
           </div>
-          <?php x_google_authorship_meta(); ?>
-        </article>
+        </div>
+      </article>
 
-      <?php endwhile; ?>
+    <?php endwhile; ?>
 
-    </div>
+  </div>
 
-    <?php x_get_view( 'icon', '_template-blank-sidebar' ); ?>
+  <?php x_get_view( 'icon', '_template-blank-sidebar' ); ?>
+  <?php x_get_view( 'global', '_header', 'widget-areas' ); ?>
+  <?php x_get_view( 'global', '_footer', 'scroll-top' ); ?>
 
-  </div> <!-- end .site -->
-
-<?php x_get_view( 'global', '_header', 'widget-areas' ); ?>
-<?php x_get_view( 'global', '_footer', 'scroll-top' ); ?>
 <?php x_get_view( 'global', '_footer' ); ?>

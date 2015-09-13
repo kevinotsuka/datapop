@@ -6,7 +6,9 @@
 // @version 1.6.4
 // =============================================================================
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+  exit; // Exit if accessed directly
+}
 
 global $product, $woocommerce, $woocommerce_loop;
 
@@ -16,7 +18,7 @@ if ( sizeof( $crosssells ) == 0 ) return;
 
 $meta_query = WC()->query->get_meta_query();
 
-$enable  = x_get_option( 'x_woocommerce_cart_cross_sells_enable', 1 );
+$enable  = x_get_option( 'x_woocommerce_cart_cross_sells_enable', '1' );
 $count   = x_get_option( 'x_woocommerce_cart_cross_sells_count', '4' );
 $columns = x_get_option( 'x_woocommerce_cart_cross_sells_columns', '4' );
 
@@ -34,7 +36,7 @@ $products = new WP_Query( $args );
 
 $woocommerce_loop['columns'] = apply_filters( 'woocommerce_cross_sells_columns', $columns );
 
-if ( $products->have_posts() && $enable == 1 ) : ?>
+if ( $products->have_posts() && $enable == '1' ) : ?>
 
   <div class="cross-sells cols-<?php echo $columns; ?>">
     <h2><?php _e( 'You May Be Interested In&hellip;', '__x__' ) ?></h2>

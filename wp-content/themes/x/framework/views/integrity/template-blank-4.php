@@ -16,7 +16,6 @@
 
       <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
         <?php x_get_view( 'global', '_content', 'the-content' ); ?>
-        <?php x_google_authorship_meta(); ?>
       </article>
 
     <?php endwhile; ?>

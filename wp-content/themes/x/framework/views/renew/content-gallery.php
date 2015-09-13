@@ -19,5 +19,4 @@
       <?php x_get_view( 'renew', '_content', 'post-footer' ); ?>
     <?php endif; ?>
   </div>
-  <?php x_google_authorship_meta(); ?>
 </article>

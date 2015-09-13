@@ -12,10 +12,11 @@
 //   01. Body
 //   02. Links
 //   03. Headings
-//   04. Content
-//   05. Navbar - Brand
-//   06. Custom Fonts
-//   07. Custom Fonts - Colors
+//   04. Container Sizing
+//   05. Content
+//   06. Navbar - Brand
+//   07. Custom Fonts
+//   08. Custom Fonts - Colors
 // =============================================================================
 
 ?>
@@ -27,8 +28,13 @@ body {
   font-size: <?php echo $x_body_font_size . 'px'; ?>;
   font-style: <?php echo ( $x_body_font_is_italic ) ? 'italic' : 'normal'; ?>;
   font-weight: <?php echo $x_body_font_weight; ?>;
-  <?php if ( $x_body_font_color_enable == 1 ) : ?>
+  <?php if ( $x_body_font_color_enable == '1' ) : ?>
     color: <?php echo $x_body_font_color; ?>;
+  <?php endif; ?>
+  <?php if ( $x_design_bg_image_pattern == '' ) : ?>
+    background-color: <?php echo $x_design_bg_color; ?>;
+  <?php else : ?>
+    background: <?php echo $x_design_bg_color; ?> url(<?php echo x_make_protocol_relative( $x_design_bg_image_pattern ); ?>) center top repeat;
   <?php endif; ?>
 }
 
@@ -57,10 +63,37 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-style: <?php echo ( $x_headings_font_is_italic ) ? 'italic' : 'normal'; ?>;
   font-weight: <?php echo $x_headings_font_weight; ?>;
   letter-spacing: <?php echo $x_headings_letter_spacing . 'px'; ?>;
-  <?php if ( $x_headings_uppercase_enable == 1 ) : ?>
+  <?php if ( $x_headings_uppercase_enable == '1' ) : ?>
     text-transform: uppercase;
   <?php endif; ?>
 }
+
+.w-h {
+  font-weight: <?php echo $x_headings_font_weight; ?> !important;
+}
+
+
+
+/* Container Sizing
+// ========================================================================== */
+
+.x-container.width {
+  width: <?php echo $x_layout_site_width . '%'; ?>;
+}
+
+.x-container.max {
+  max-width: <?php echo $x_layout_site_max_width . 'px'; ?>;
+}
+
+<?php if ( $x_layout_site == 'boxed' ) : ?>
+
+  .site,
+  .x-navbar.x-navbar-fixed-top.x-container.max.width {
+    width: <?php echo $x_layout_site_width . '%'; ?>;
+    max-width: <?php echo $x_layout_site_max_width . 'px'; ?>;
+  }
+
+<?php endif; ?>
 
 
 
@@ -99,7 +132,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-style: <?php echo ( $x_logo_font_is_italic ) ? 'italic' : 'normal'; ?>;
   font-weight: <?php echo $x_logo_font_weight; ?>;
   letter-spacing: <?php echo $x_logo_letter_spacing . 'px'; ?>;
-  <?php if ( $x_logo_uppercase_enable == 1 ) : ?>
+  <?php if ( $x_logo_uppercase_enable == '1' ) : ?>
     text-transform: uppercase;
   <?php endif; ?>
 }
@@ -117,7 +150,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 /* Custom Fonts
 // ========================================================================== */
 
-<?php if ( $x_custom_fonts == 1 ) : ?>
+<?php if ( $x_custom_fonts == '1' ) : ?>
 
   body,
   input,
@@ -150,7 +183,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 // Headings.
 */
 
-<?php if ( $x_headings_font_color_enable == 1 ) : ?>
+<?php if ( $x_headings_font_color_enable == '1' ) : ?>
 
   h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, .h1 a, .h2 a, .h3 a, .h4 a, .h5 a, .h6 a, blockquote {
     color: <?php echo $x_headings_font_color; ?>;
@@ -167,7 +200,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 // Body.
 */
 
-<?php if ( $x_body_font_color_enable == 1 ) : ?>
+<?php if ( $x_body_font_color_enable == '1' ) : ?>
 
   .cfc-b-tx { color:            <?php echo $x_body_font_color; ?> !important; }
   .cfc-b-bd { border-color:     <?php echo $x_body_font_color; ?> !important; }

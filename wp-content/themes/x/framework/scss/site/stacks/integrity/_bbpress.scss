@@ -678,38 +678,31 @@
 .x-btn-bbp,
 .bbp-topic-tags a,
 .bbp-row-actions a,
-.x-bbp-header .actions a {
+.x-bbp-header .actions a,
+.quicktags-toolbar input.button {
   display: inline-block;
   margin: 0;
+  border: 0;
   padding: 5px 6px;
   @include font-size(1.1);
   letter-spacing: 0;
   line-height: 1;
   text-align: center;
+  text-shadow: none;
   text-transform: none;
   color: $white;
   background-color: $accentColor;
   border-radius: 3px;
+  @include box-shadow(#{none});
 
   &:hover {
     color: $white;
   }
 }
 
-.bbp-row-actions {
-  display: block;
-  margin-bottom: 5px;
-
-  a {
-    margin-right: 3px;
-    padding: 2px 5px;
-    line-height: 1.1;
-  }
-}
-
 
 //
-// Tags.
+// Topic tags.
 //
 
 .bbp-topic-tags {
@@ -732,6 +725,38 @@
 
   a {
     margin: 4px 2px 0;
+  }
+}
+
+
+//
+// Row actions.
+//
+
+.bbp-row-actions {
+  display: block;
+  margin-bottom: 5px;
+
+  a {
+    margin-right: 3px;
+    padding: 2px 5px;
+    line-height: 1.1;
+  }
+}
+
+
+//
+// Quicktags toolbar.
+//
+
+.quicktags-toolbar {
+  input.button {
+    margin: 0 5px 5px 0;
+
+    &:focus,
+    &:active {
+      outline: 0;
+    }
   }
 }
 
@@ -768,9 +793,9 @@
 // Navigation
 // =============================================================================
 
-.x-navbar .x-nav > .menu-item-bbpress-navigation {
+.x-navbar .x-nav > .x-menu-item-bbpress {
   > a {
-    &:after {
+    > span:after {
       display: none;
     }
   }

@@ -17,4 +17,7 @@
     </h2>
   <?php endif; ?>
   <?php x_icon_entry_meta(); ?>
+  <?php if ( get_post_format() == 'quote' ) : ?>
+    <p class="entry-title-sub"><?php echo get_post_meta( get_the_ID(), '_x_quote_quote', true ); ?></p>
+  <?php endif; ?>
 </header>

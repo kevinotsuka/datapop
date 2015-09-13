@@ -24,5 +24,4 @@
     <?php endif; ?>
     <?php x_get_view( 'global', '_content' ); ?>
   </div>
-  <?php x_google_authorship_meta(); ?>
 </article>

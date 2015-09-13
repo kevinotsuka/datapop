@@ -28,5 +28,4 @@ $is_index_featured_layout = get_post_meta( get_the_ID(), '_x_ethos_index_feature
       <?php x_get_view( 'global', '_content' ); ?>
     </div>
   <?php endif; ?>
-  <?php x_google_authorship_meta(); ?>
 </article>

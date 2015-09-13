@@ -10,19 +10,34 @@ GLOBAL $post_carousel_entry_id;
 
 $post_carousel_entry_id = get_the_ID();
 
-$is_enabled = x_get_option( 'x_ethos_post_carousel_enable' ) == 1;
+$is_enabled = x_get_option( 'x_ethos_post_carousel_enable', '' ) == '1';
 $count      = x_get_option( 'x_ethos_post_carousel_count' );
 $display    = x_get_option( 'x_ethos_post_carousel_display' );
 
 switch ( $display ) {
   case 'most-commented' :
-    $args = array( 'post_type' => 'post', 'posts_per_page' => $count, 'orderby' => 'comment_count', 'order' => 'DESC' );
+    $args = array(
+      'post_type'      => 'post',
+      'posts_per_page' => $count,
+      'orderby'        => 'comment_count',
+      'order'          => 'DESC'
+    );
     break;
   case 'random' :
-    $args = array( 'post_type' => 'post', 'posts_per_page' => $count, 'orderby' => 'rand' );
+    $args = array(
+      'post_type'      => 'post',
+      'posts_per_page' => $count,
+      'orderby'        => 'rand'
+    );
     break;
   case 'featured' :
-    $args = array( 'post_type' => 'post', 'posts_per_page' => $count, 'orderby' => 'post__in', 'post__in' => x_intval_explode( x_get_option( 'x_ethos_post_carousel_featured' ) ) );
+    $args = array(
+      'post_type'      => 'post',
+      'posts_per_page' => $count,
+      'orderby'        => 'date',
+      'meta_key'       => '_x_ethos_post_carousel_display',
+      'meta_value'     => 'on'
+    );
     break;
 }
 
@@ -52,13 +67,13 @@ switch ( $display ) {
       jQuery('.x-post-carousel').slick({
         speed          : 500,
         slide          : 'li',
-        slidesToShow   : <?php echo x_get_option( 'x_ethos_post_carousel_display_count_extra_large' ); ?>,
+        slidesToShow   : <?php echo x_get_option( 'x_ethos_post_carousel_display_count_extra_large', '5' ); ?>,
         slidesToScroll : 1,
         responsive     : [
-          { breakpoint : 1500, settings : { speed : 500, slide : 'li', slidesToShow : <?php echo x_get_option( 'x_ethos_post_carousel_display_count_large' ); ?> } },
-          { breakpoint : 1200, settings : { speed : 500, slide : 'li', slidesToShow : <?php echo x_get_option( 'x_ethos_post_carousel_display_count_medium' ); ?> } },
-          { breakpoint : 979,  settings : { speed : 500, slide : 'li', slidesToShow : <?php echo x_get_option( 'x_ethos_post_carousel_display_count_small' ); ?> } },
-          { breakpoint : 550,  settings : { speed : 500, slide : 'li', slidesToShow : <?php echo x_get_option( 'x_ethos_post_carousel_display_count_extra_small' ); ?> } }
+          { breakpoint : 1500, settings : { speed : 500, slide : 'li', slidesToShow : <?php echo x_get_option( 'x_ethos_post_carousel_display_count_large', '4' ); ?> } },
+          { breakpoint : 1200, settings : { speed : 500, slide : 'li', slidesToShow : <?php echo x_get_option( 'x_ethos_post_carousel_display_count_medium', '3' ); ?> } },
+          { breakpoint : 979,  settings : { speed : 500, slide : 'li', slidesToShow : <?php echo x_get_option( 'x_ethos_post_carousel_display_count_small', '2' ); ?> } },
+          { breakpoint : 550,  settings : { speed : 500, slide : 'li', slidesToShow : <?php echo x_get_option( 'x_ethos_post_carousel_display_count_extra_small', '1' ); ?> } }
         ]
       });
     });

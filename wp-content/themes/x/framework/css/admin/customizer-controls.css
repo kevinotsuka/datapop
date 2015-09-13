@@ -8,9 +8,11 @@
 // TABLE OF CONTENTS
 // -----------------------------------------------------------------------------
 //   01. Base Styles
-//   02. Specific Controls
-//   03. Subtitles and Descriptions
-//   04. Loading Message
+//   02. Generic Controls
+//   03. Slider
+//   04. Subtitles and Descriptions
+//   05. Updating Message
+//   06. Hidden Elements
 // ========================================================================== */
 
 /* Base Styles
@@ -20,44 +22,9 @@
   margin-bottom: 21px;
 }
 
-#customize-control-x_integrity_topbar_transparency_enable,
-#customize-control-x_integrity_navbar_transparency_enable,
-#customize-control-x_icon_post_standard_colors_enable,
-#customize-control-x_icon_post_standard_color,
-#customize-control-x_icon_post_image_colors_enable,
-#customize-control-x_icon_post_image_color,
-#customize-control-x_icon_post_gallery_colors_enable,
-#customize-control-x_icon_post_gallery_color,
-#customize-control-x_icon_post_video_colors_enable,
-#customize-control-x_icon_post_video_color,
-#customize-control-x_icon_post_audio_colors_enable,
-#customize-control-x_icon_post_audio_color,
-#customize-control-x_icon_post_quote_colors_enable,
-#customize-control-x_icon_post_quote_color,
-#customize-control-x_icon_post_link_colors_enable,
-#customize-control-x_icon_post_link_color,
-#customize-control-x_custom_font_subsets,
-#customize-control-x_custom_font_subset_cyrillic,
-#customize-control-x_custom_font_subset_greek,
-#customize-control-x_custom_font_subset_vietnamese,
-#customize-control-x_headings_uppercase_enable,
-#customize-control-x_footer_bottom_display,
-#customize-control-x_footer_menu_display,
-#customize-control-x_footer_social_display,
-#customize-control-x_portfolio_enable_facebook_sharing,
-#customize-control-x_portfolio_enable_twitter_sharing,
-#customize-control-x_portfolio_enable_google_plus_sharing,
-#customize-control-x_portfolio_enable_linkedin_sharing,
-#customize-control-x_portfolio_enable_pinterest_sharing,
-#customize-control-x_portfolio_enable_reddit_sharing,
-#customize-control-x_woocommerce_product_tab_description_enable,
-#customize-control-x_woocommerce_product_tab_additional_info_enable {
-  margin-bottom: 0;
-}
 
 
-
-/* Specific Controls
+/* Generic Controls
 // ========================================================================== */
 
 .customize-control select,
@@ -91,6 +58,10 @@
   margin-top: -12px;
 }
 
+.customize-control-image .actions {
+  margin-bottom: 0;
+}
+
 .accordion-section .customize-control-image .preview-thumbnail img {
   width: auto;
   max-width: 100%;
@@ -106,10 +77,6 @@
   outline: 0;
   -webkit-box-shadow: none;
           box-shadow: none;
-}
-
-#customize-control-x_woocommerce_product_tab_description_enable {
-  margin-top: -21px;
 }
 
 
@@ -164,16 +131,16 @@
 */
 
 .x-customize-control-subtitle {
-  margin: 40px 0 8px;
+  margin: 28px 0 8px;
 }
 
 .x-customize-subtitle {
   display: block;
-  margin: 0 -20px;
+  margin: 0 -12px;
   border: 1px solid #eee;
   border-left: 0;
   border-right: 0;
-  padding: 9px 20px;
+  padding: 9px 12px;
   font-size: 10px;
   font-weight: 400;
   letter-spacing: 2px;
@@ -204,23 +171,33 @@
 
 
 
-/* Loading Message
+/* Updating Message
 // ========================================================================== */
 
 .x-updating {
   display: none;
   float: right;
   position: absolute;
-  right: 35px;
-  bottom: 15px;
-  padding: 12px 11px 12px 16px;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 5px;
-  line-height: 1.2;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 20px 15px 20px 25px;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 10px;
+  line-height: 1;
+  text-align: center;
   text-transform: uppercase;
   color: #fff;
   background-color: #000;
   background-color: rgba(0, 0, 0, 0.85);
-  border-radius: 4px;
+}
+
+
+
+/* Hidden Elements
+// ========================================================================== */
+
+[data-x-hide] {
+  display: none !important;
 }

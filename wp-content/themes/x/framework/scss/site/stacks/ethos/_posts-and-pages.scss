@@ -52,14 +52,6 @@
 
 .hentry {
   @include clearfix();
-
-  p,
-  ul,
-  ol {
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
 }
 
 
@@ -81,8 +73,7 @@ a.entry-thumb {
   padding-bottom: 65%;
   background-repeat: no-repeat;
   background-position: center center;
-  -webkit-background-size: cover;
-          background-size: cover;
+  background-size: cover;
 
   .view {
     display: block;
@@ -265,7 +256,7 @@ h2.entry-title {
 }
 
 .p-meta {
-  margin-top: 1em;
+  margin: 1em 0 0;
   font-family: $altFontFamily;
   font-size: 0.75em;
 
@@ -304,6 +295,14 @@ h2.entry-title {
   object {
     width: 100%;
     max-width: 100%;
+  }
+
+  > p,
+  > ul,
+  > ol {
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -457,8 +456,7 @@ h2.entry-title {
 
   &.has-post-thumbnail {
     .entry-featured {
-      .x-responsive-audio-embed,
-      .jp-controls-container-audio {
+      .x-audio {
         position: absolute;
         left: 10px;
         right: 10px;
@@ -670,21 +668,21 @@ h2.entry-title {
   padding: 0;
 }
 
-[class*="page-template-template-blank"] .x-container-fluid.main:before {
-  left: -5000em;
-}
-
-[class*="page-template-template-blank"] .x-container-fluid.main > .offset {
-  margin: 0;
-}
-
 .page-template-template-blank-4-php,
 .page-template-template-blank-5-php,
 .page-template-template-blank-6-php,
 .page-template-template-blank-8-php {
+  .x-container.main > .offset {
+    margin: 0;
+  }
+
   .x-main {
     background-color: $baseModBackground;
   }
+}
+
+[class*="page-template-template-blank"] .x-container.main:before {
+  left: -5000em;
 }
 
 
@@ -746,8 +744,7 @@ h2.entry-title {
   background-color: $navbarBackground;
   background-repeat: no-repeat;
   background-position: center center;
-  -webkit-background-size: cover;
-          background-size: cover;
+  background-size: cover;
 
   &:hover {
     .h-entry-cover {

@@ -63,6 +63,7 @@
   .bbp-topic-tags a,
   .bbp-row-actions a,
   .x-bbp-header .actions a,
+  .quicktags-toolbar input.button,
   .bbp-submit-wrapper button[type="submit"] {
     background-color: <?php echo $x_site_link_color; ?>;
   }
@@ -71,6 +72,7 @@
   .bbp-topic-tags a:hover,
   .bbp-row-actions a:hover,
   .x-bbp-header .actions a:hover,
+  .quicktags-toolbar input.button:hover,
   .bbp-submit-wrapper button[type="submit"]:hover {
     background-color: <?php echo $x_site_link_color_hover; ?>;
   }

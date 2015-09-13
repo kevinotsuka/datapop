@@ -107,6 +107,10 @@ $wpe_netdna_push_domains=array ( );
 $wpe_domain_mappings=array ( );
 
 $memcached_servers=array ( );
+
+define( 'WP_SITEURL', 'http://datapop.wpengine.com' );
+
+define( 'WP_HOME', 'http://datapop.wpengine.com' );
 define('WPLANG','');
 
 # WP Engine ID

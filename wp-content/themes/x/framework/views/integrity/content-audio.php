@@ -12,7 +12,7 @@
   <?php if ( has_post_thumbnail() ) : ?>
   <div class="entry-featured">
     <div class="entry-thumb">
-      <?php echo get_the_post_thumbnail( get_the_ID(), 'entry-full-integrity', NULL ); ?>
+      <?php echo get_the_post_thumbnail( get_the_ID(), 'entry', NULL ); ?>
     </div>
     <?php x_featured_audio(); ?>
   </div>
@@ -27,5 +27,4 @@
     <?php x_get_view( 'global', '_content' ); ?>
   </div>
   <?php x_get_view( 'integrity', '_content', 'post-footer' ); ?>
-  <?php x_google_authorship_meta(); ?>
 </article>

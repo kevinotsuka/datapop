@@ -6,7 +6,9 @@
 // @version 1.6.4
 // =============================================================================
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+  exit; // Exit if accessed directly
+}
 
 GLOBAL $product, $woocommerce_loop;
 
@@ -31,10 +33,10 @@ $products = new WP_Query( $args );
 
 $woocommerce_loop['columns'] = $columns;
 
-$enable  = x_get_option( 'x_woocommerce_product_upsells_enable', 1 );
+$enable  = x_get_option( 'x_woocommerce_product_upsells_enable', '1' );
 $columns = x_get_option( 'x_woocommerce_product_upsell_columns', '4' );
 
-if ( $products->have_posts() && $enable == 1 ) : ?>
+if ( $products->have_posts() && $enable == '1' ) : ?>
 
   <div class="upsells products cols-<?php echo $columns; ?>">
 

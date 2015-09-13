@@ -10,6 +10,7 @@
 // TABLE OF CONTENTS
 // -----------------------------------------------------------------------------
 //   01. Register Theme Plugins
+//   02. Remove "Install Plugins" Submenu Item
 // =============================================================================
 
 // Register Theme Plugins
@@ -18,58 +19,118 @@
 if ( ! function_exists( 'x_register_theme_plugins' ) ) :
   function x_register_theme_plugins() {
 
-    $plugins = array(
-      array(
-        'name'               => 'X Shortcodes',
-        'slug'               => 'x-shortcodes',
-        'source'             => X_TEMPLATE_URL . '/framework/plugins/x-shortcodes.zip',
+    //
+    // Bundled plugins.
+    //
+
+    $bundled = array(
+
+      'cornerstone' => array(
+        'name'               => 'Cornerstone',
+        'slug'               => 'cornerstone',
+        'source'             => X_TEMPLATE_URL . '/framework/plugins/cornerstone.zip',
         'required'           => true,
         'version'            => '',
         'force_activation'   => true,
         'force_deactivation' => false,
-        'external_url'       => ''
+        'external_url'       => '',
+        'x_plugin'           => 'cornerstone/cornerstone.php',
+        'x_author'           => 'Themeco',
+        'x_description'      => 'This plugin is required to run X. It provides a front end page editor and all the shortcodes used in X.',
+        'x_logo'             => '//theme.co/media/x_extensions/200-200-no-title-cornerstone.png',
+        'x_manage_upgrade'   => false
       ),
-      array(
+
+      'revslider' => array(
         'name'               => 'Slider Revolution',
         'slug'               => 'revslider',
         'source'             => X_TEMPLATE_URL . '/framework/plugins/revslider.zip',
         'required'           => false,
-        'version'            => '4.5.95',
+        'version'            => '5.0.4.1',
         'force_activation'   => false,
         'force_deactivation' => false,
         'external_url'       => '',
-        'manage_upgrade'     => 'revslider/revslider.php'
+        'x_plugin'           => 'revslider/revslider.php',
+        'x_author'           => 'ThemePunch',
+        'x_description'      => 'Create responsive sliders with must-see-effects, all while maintaining your search engine optimization.',
+        'x_logo'             => '//theme.co/media/x_extensions/200-200-no-title-slider-revolution.png',
+        'x_manage_upgrade'   => true
       ),
-      array(
+
+      'js_composer' => array(
         'name'               => 'Visual Composer',
         'slug'               => 'js_composer',
         'source'             => X_TEMPLATE_URL . '/framework/plugins/js_composer.zip',
         'required'           => false,
-        'version'            => '4.1.3',
+        'version'            => '4.6.2',
         'force_activation'   => false,
         'force_deactivation' => false,
         'external_url'       => '',
-        'manage_upgrade'     => 'js_composer/js_composer.php'
-      ),
-      array(
-        'name'     => 'Contact Form 7',
-        'slug'     => 'contact-form-7',
-        'required' => false
-      ),
-      array(
-        'name'     => 'Force Regenerate Thumbnails',
-        'slug'     => 'force-regenerate-thumbnails',
-        'required' => true
+        'x_plugin'           => 'js_composer/js_composer.php',
+        'x_author'           => 'WPBakery',
+        'x_description'      => 'We recommend using <a href="//theme.co/cornerstone/" title="Cornerstone" target="_blank">Cornerstone</a> for page building in X as it is built and managed by Themeco; however, Visual Composer is an alternate choice.',
+        'x_logo'             => '//theme.co/media/x_extensions/200-200-no-title-visual-composer.png',
+        'x_manage_upgrade'   => true
       )
+
     );
+
+
+    //
+    // Remote plugins.
+    //
+
+    $extensions = array();
+    $addons     = X_Update_API::get_cached_addons();
+
+    if ( is_array( $addons ) && ! isset( $addons['error'] ) ) {
+
+      foreach ( $addons as $ext => $data ) {
+
+        $data['force_activation']   = ( $data['force_activation']   == 'on' ) ? true : false;
+        $data['force_deactivation'] = ( $data['force_deactivation'] == 'on' ) ? true : false;
+
+        $extensions[$ext] = array(
+          'name'               => $data['title'],
+          'slug'               => $data['slug'],
+          'source'             => $data['download_url'],
+          'required'           => false,
+          'version'            => $data['latest_version'],
+          'force_activation'   => $data['force_activation'],
+          'force_deactivation' => false,
+          'external_url'       => '',
+          'x_plugin'           => $data['plugin_file'],
+          'x_author'           => $data['author'],
+          'x_description'      => $data['description'],
+          'x_logo'             => $data['logo_url'],
+          'x_manage_upgrade'   => false
+        );
+
+      }
+
+    }
+
+
+    //
+    // Merge bundled and remote plugins.
+    //
+
+    $plugins = array_merge( $bundled, $extensions );
+
+
+    //
+    // TMG configuration.
+    //
 
     $config = array(
       'domain'           => '__x__',
-      'default_path'     => '',
+      'default_path'     => 'tgmpa-install-plugins',
       'parent_menu_slug' => 'themes.php',
       'parent_url_slug'  => 'themes.php',
       'menu'             => 'install-required-plugins',
       'has_notices'      => true,
+      'dismissable'      => true,
+      'dismiss_msg'      => '',
       'is_automatic'     => true,
       'message'          => '',
       'strings'          => array(
@@ -99,4 +160,18 @@ if ( ! function_exists( 'x_register_theme_plugins' ) ) :
   }
 
   add_action( 'tgmpa_register', 'x_register_theme_plugins' );
+endif;
+
+
+
+// Remove "Install Plugins" Submenu Item
+// =============================================================================
+
+if ( ! function_exists( 'x_remove_tgm_install_menu_item' ) ) :
+  function x_remove_tgm_install_menu_item() {
+
+    remove_submenu_page( 'themes.php', 'install-required-plugins' );
+
+  }
+  add_action( 'admin_menu', 'x_remove_tgm_install_menu_item', 9999 );
 endif;

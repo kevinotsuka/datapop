@@ -7,178 +7,91 @@
 // =============================================================================
 // TABLE OF CONTENTS
 // -----------------------------------------------------------------------------
-//   01. Common Styles
-//   02. Brand
-//   03. Navigation
-//   04. Fixed Navbar
-//   05. Search
+//   01. Base Styles
+//   02. Button
+//   03. Desktop Navigation
+//   04. Mobile Navigation
+//   05. Fixed Navbar
+//   06. Search
 // =============================================================================
 
-// Common Styles
+// Base Styles
 // =============================================================================
 
 .x-navbar {
-  position: relative;
-  overflow: visible;
   border-bottom: $navbarOuterBorderWidth solid $navbarOuterBorderColor;
   background-color: $navbarBackground;
-  z-index: $zindexNavbar;
-  @include font-size(1.4);
-}
-
-
-//
-// Set width to auto for default container.
-// We then reset it for fixed navbars in the #gridSystem mixin.
-//
-
-.x-navbar .container {
-  width: auto;
-}
-
-
-//
-// Override the default collapsed state.
-//
-
-.x-nav-collapse.collapse {
-  height: auto;
 }
 
 
 
-// Brand
+// Button
 // =============================================================================
-
-.x-brand {
-  display: inline-block;
-  font-family: $altFontFamily;
-  @include font-size(5.4);
-  font-weight: $navbarBrandFontWeight;
-  letter-spacing: -3px;
-  line-height: 1;
-  color: $navbarBrandColor;
-
-  &:hover {
-    text-decoration: none;
-    color: $navbarBrandColor;
-  }
-}
-
-.x-navbar .x-brand {
-  float: left;
-  display: block;
-}
-
-
-
-// Navigation
-// =============================================================================
-
-.x-navbar .x-nav {
-  margin: 0;
-}
-
-.x-navbar .x-nav > li {
-  float: left;
-}
-
-.masthead-inline .x-nav {
-  display: block;
-  float: right;
-}
-
-.masthead-stacked .x-nav {
-  display: table;
-  margin-left: auto;
-  margin-right: auto;
-  @include break(cubs) {
-    display: block;
-  }
-}
-
-
-//
-// Links.
-//
-
-.x-navbar .x-nav > li {
-  > a {
-    float: none;
-    border-left: 1px solid $navbarLinkBorderColor;
-    padding: 0 1.525em;
-    line-height: 1;
-    font-weight: $navbarLinkFontWeight;
-    letter-spacing: 1px;
-    text-decoration: none;
-    color: $navbarLinkColor;
-  }
-
-  &:last-child > a {
-    border-right: 1px solid $navbarLinkBorderColor;
-  }
-}
-
-.x-navbar .x-nav li > a {
-  &:after {
-    content: "\f103";
-    margin-left: 0.35em;
-    letter-spacing: 0;
-    @include font-awesome();
-  }
-
-  &:only-child:after {
-    content: "";
-    display: none;
-  }
-}
-
-
-//
-// Hover.
-//
-
-.x-navbar .x-nav > li > a:hover {
-  text-decoration: none;
-  color: $navbarLinkColorHover;
-  @include box-shadow(#{$navbarTopLinkBoxShadowHover});
-}
-
-
-//
-// Active nav items.
-//
-
-.x-navbar .x-nav > .sfHover > a,
-.x-navbar .x-nav > .current-menu-item > a {
-  text-decoration: none;
-  color: $navbarLinkColorHover;
-  @include box-shadow(#{$navbarTopLinkBoxShadowHover});
-}
-
-
-//
-// Navbar button for toggling navbar items in responsive layouts.
-//
 
 .x-btn-navbar {
-  display: none;
   padding: 0;
-  @include font-size(2.4);
-  line-height: 1;
   color: $navbarBtnColor;
 
   &:hover {
     color: $navbarBtnColor;
   }
+
+  &.collapsed {
+    color: $navbarBtnColorCollapsed;
+
+    &:hover {
+      color: $navbarBtnColor;
+    }
+  }
 }
 
-.x-btn-navbar.collapsed {
-  color: $navbarBtnColorCollapsed;
 
-  &:hover {
-    color: $navbarBtnColor;
+
+// Desktop Navigation
+// =============================================================================
+
+.x-navbar .desktop .x-nav {
+  > li {
+    > a {
+      border-right: 1px solid $navbarLinkBorderColor;
+      padding: 0;
+    }
+
+    &:first-child > a {
+      border-left: 1px solid $navbarLinkBorderColor;
+    }
   }
+}
+
+
+
+// Mobile Navigation
+// =============================================================================
+
+//
+// Links.
+//
+
+.x-navbar .mobile .x-nav li > a {
+  margin: 0 0 10px;
+  padding: 0.85em 1.15em;
+  color: $navbarLinkColor;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.x-navbar .mobile .x-nav li > a:hover,
+.x-navbar .mobile .x-nav .x-active > a,
+.x-navbar .mobile .x-nav .current-menu-item > a {
+  color: $navbarLinkColorHover;
+}
+
+
+//
+// Sub toggle.
+//
+
+.x-sub-toggle {
+  width: 45px;
 }
 
 
@@ -187,74 +100,17 @@
 // =============================================================================
 
 //
-// Shared top/bottom/left/right styles.
-//
-
-.x-navbar-fixed-top,
-.x-navbar-fixed-left,
-.x-navbar-fixed-right {
-  position: fixed;
-  z-index: $zindexNavbar;
-}
-
-//
-// Top styles.
-//
-
-.x-navbar-fixed-top-active {
-  .x-navbar-wrap {
-    margin-bottom: $navbarOuterBorderWidth;
-    height: $navbarHeight;
-    @include break(cubs) {
-      margin-bottom: 0;
-      height: auto;
-    }
-  }
-}
-
-.x-navbar-fixed-top {
-  top: 0;
-  left: 0;
-  right: 0;
-}
-
-.x-boxed-layout-active .x-navbar-fixed-top {
-  left: 10px;
-  right: 10px;
-}
-
-
-//
 // Left/right styles.
 //
 
 .x-navbar-fixed-left,
 .x-navbar-fixed-right {
-  top: 0;
-  bottom: 0;
-  width: $navbarFixedSideWidth;
-  border-bottom: 0;
-
-  .x-navbar-inner {
-    height: 100%;
-
-    > .x-container-fluid.width {
-      width: 100%;
-    }
+  @include break(mama-bear) {
+    border-bottom: 0;
   }
 
-  .x-brand {
-    float: none;
-    text-align: center;
-  }
-
-  .x-nav {
-    float: none;
-    margin-top: 2em;
-
+  .desktop .x-nav {
     > li {
-      float: none;
-
       > a {
         text-align: center;
         border-left: 0;
@@ -264,8 +120,8 @@
           content: "";
           display: block;
           position: absolute;
-          left: 35%;
-          right: 35%;
+          left: 37.5%;
+          right: 37.5%;
           bottom: -1px;
           height: 2px;
           background-color: $navbarLinkBorderColor;
@@ -274,38 +130,44 @@
 
       &:last-child > a {
         border-right: 0;
+
+        &:before {
+          display: none;
+        }
       }
     }
   }
 }
 
+
+//
+// Left styles.
+//
+
 .x-navbar-fixed-left {
-  left: 0;
   border-right: $navbarOuterBorderWidth solid $navbarOuterBorderColor;
   @include break(cubs) {
     border-right: 0;
-    border-bottom: $navbarOuterBorderWidth solid $navbarOuterBorderColor;
   }
 
-  .x-nav > li {
-    > a:hover {
-      @include box-shadow(#{$navbarLeftLinkBoxShadowHover});
-    }
+  .desktop .x-nav > li > a:hover {
+    @include box-shadow(#{$navbarLeftLinkBoxShadowHover});
   }
 }
 
+
+//
+// Right styles.
+//
+
 .x-navbar-fixed-right {
-  right: 0;
   border-left: $navbarOuterBorderWidth solid $navbarOuterBorderColor;
   @include break(cubs) {
     border-left: 0;
-    border-bottom: $navbarOuterBorderWidth solid $navbarOuterBorderColor;
   }
 
-  .x-nav > li {
-    > a:hover {
-      @include box-shadow(#{$navbarRightLinkBoxShadowHover});
-    }
+  .desktop .x-nav > li > a:hover {
+    @include box-shadow(#{$navbarRightLinkBoxShadowHover});
   }
 }
 
@@ -314,14 +176,12 @@
 // Search
 // =============================================================================
 
-.x-navbar .x-nav li.menu-item-navbar-search {
+.x-navbar .mobile .x-nav > li.x-menu-item-search {
+  margin: 22px 0 0;
   text-align: center;
 
   > a {
-    letter-spacing: 0;
-
-    &:after {
-      display: none;
-    }
+    margin: 0;
+    background-color: transparent;
   }
 }

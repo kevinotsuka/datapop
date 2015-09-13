@@ -21,6 +21,7 @@ $glob_path = 'framework/functions/global';
 $admn_path = 'framework/functions/global/admin';
 $tmgp_path = 'framework/functions/global/admin/tmg';
 $eque_path = 'framework/functions/global/enqueue';
+$plgn_path = 'framework/functions/global/plugins';
 
 
 
@@ -43,15 +44,13 @@ require_once( $glob_path . '/stack-data.php' );
 
 require_once( $admn_path . '/thumbnails/setup.php' );
 require_once( $admn_path . '/setup.php' );
+require_once( $admn_path . '/migration.php' );
 require_once( $admn_path . '/meta/setup.php' );
 require_once( $admn_path . '/sidebars.php' );
 require_once( $admn_path . '/widgets.php' );
 require_once( $admn_path . '/custom-post-types.php' );
 require_once( $admn_path . '/customizer/setup.php' );
-
-if ( X_VISUAL_COMOPSER_IS_ACTIVE ) {
-  require_once( $admn_path . '/visual-composer.php' );
-}
+require_once( $admn_path . '/addons/setup.php' );
 
 
 //
@@ -75,6 +74,7 @@ require_once( $eque_path . '/scripts.php' );
 // Global functions.
 //
 
+require_once( $glob_path . '/meta.php' );
 require_once( $glob_path . '/featured.php' );
 require_once( $glob_path . '/pagination.php' );
 require_once( $glob_path . '/navbar.php' );
@@ -85,18 +85,6 @@ require_once( $glob_path . '/social.php' );
 require_once( $glob_path . '/content.php' );
 require_once( $glob_path . '/remove.php' );
 
-if ( X_BBPRESS_IS_ACTIVE ) {
-  require_once( $glob_path . '/bbpress.php' );
-}
-
-if ( X_BUDDYPRESS_IS_ACTIVE ) {
-  require_once( $glob_path . '/buddypress.php' );
-}
-
-if ( X_WOOCOMMERCE_IS_ACTIVE ) {
-  require_once( $glob_path . '/woocommerce.php' );
-}
-
 
 //
 // Stack specific functions.
@@ -106,3 +94,36 @@ require_once( $func_path . '/integrity.php' );
 require_once( $func_path . '/renew.php' );
 require_once( $func_path . '/icon.php' );
 require_once( $func_path . '/ethos.php' );
+
+
+//
+// Integrated plugins.
+//
+
+if ( X_BBPRESS_IS_ACTIVE ) {
+  require_once( $plgn_path . '/bbpress.php' );
+}
+
+if ( X_BUDDYPRESS_IS_ACTIVE ) {
+  require_once( $plgn_path . '/buddypress.php' );
+}
+
+if ( X_REVOLUTION_SLIDER_IS_ACTIVE ) {
+  require_once( $plgn_path . '/revolution-slider.php' );
+}
+
+if ( X_SOLILOQUY_IS_ACTIVE ) {
+  require_once( $plgn_path . '/soliloquy.php' );
+}
+
+if ( X_VISUAL_COMOPSER_IS_ACTIVE ) {
+  require_once( $plgn_path . '/visual-composer.php' );
+}
+
+if ( X_WOOCOMMERCE_IS_ACTIVE ) {
+  require_once( $plgn_path . '/woocommerce.php' );
+}
+
+if ( X_WPML_IS_ACTIVE ) {
+  require_once( $plgn_path . '/wpml.php' );
+}

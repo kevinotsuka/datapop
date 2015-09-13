@@ -135,10 +135,10 @@ function x_portfolio_init() {
   // Flush rewrite rules if portfolio slug is updated.
   //
 
-  if ( get_transient( 'x_transient_portfolio_slug_before' ) != get_transient( 'x_transient_portfolio_slug_after' ) ) {
+  if ( get_transient( 'x_portfolio_slug_before' ) != get_transient( 'x_portfolio_slug_after' ) ) {
     flush_rewrite_rules( false );
-    delete_transient( 'x_transient_portfolio_slug_before' );
-    delete_transient( 'x_transient_portfolio_slug_after' );
+    delete_transient( 'x_portfolio_slug_before' );
+    delete_transient( 'x_portfolio_slug_after' );
   }
 
 }

@@ -30,5 +30,4 @@ $disable_page_title = get_post_meta( get_the_ID(), '_x_entry_disable_page_title'
     <?php endif; ?>
     <?php x_get_view( 'global', '_content' ); ?>
   </div>
-  <?php x_google_authorship_meta(); ?>
 </article>

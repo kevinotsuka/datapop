@@ -38,5 +38,4 @@ $cite                     = get_post_meta( get_the_ID(), '_x_quote_cite',  true 
       <?php endif; ?>
     </div>
   <?php endif; ?>
-  <?php x_google_authorship_meta(); ?>
 </article>

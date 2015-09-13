@@ -29,38 +29,7 @@ function x_add_customizer_custom_controls( $wp_customize ) {
     }
   }
 
-  class X_Customize_Control_Multiple_Select extends WP_Customize_Control {
-    public $type = 'multiple-select';
-    public function render_content() {
-      ?>
-        <label>
-          <span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
-          <select <?php $this->link(); ?> multiple="multiple" style="height: 156px;">
-            <?php
-              foreach ( $this->choices as $value => $label ) {
-                $selected = ( in_array( $value, $this->value() ) ) ? selected( 1, 1, false ) : '';
-                echo '<option value="' . esc_attr( $value ) . '"' . $selected . '>' . $label . '</option>';
-              }
-            ?>
-          </select>
-        </label>
-      <?php
-    }
-  }
-
-  class X_Customize_Control_Number extends WP_Customize_Control {
-    public $type = 'number';
-    public function render_content() {
-    ?>
-      <label>
-        <span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
-        <input type="number" <?php $this->link(); ?> value="<?php echo intval( $this->value() ); ?>" style="width: 98%;"/>
-      </label>
-    <?php
-    }
-  }
-
-  class X_Customize_Slider extends WP_Customize_Control {
+  class X_Customize_Control_Slider extends WP_Customize_Control {
     public $type = 'slider';
     public function enqueue() {
       wp_enqueue_script( 'jquery-ui-core' );

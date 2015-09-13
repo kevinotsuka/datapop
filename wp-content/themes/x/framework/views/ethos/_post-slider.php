@@ -12,12 +12,13 @@ $is_archive = is_category() || is_tag();
 if ( $is_blog || $is_archive ) :
 
   if ( $is_blog ) {
-    $info = array( 'blog', NULL, NULL );
+    $info = array( 'blog', NULL, NULL, '_x_ethos_post_slider_blog_display' );
   } elseif ( $is_archive ) {
-    $info = array( 'archive', 'cat', get_queried_object_id() );
+    $type = ( is_category() ) ? 'cat' : 'tag_id';
+    $info = array( 'archive', $type, get_queried_object_id(), '_x_ethos_post_slider_archives_display' );
   }
 
-  $slider_enabled = x_get_option( 'x_ethos_post_slider_' . $info[0] . '_enable' ) == 1;
+  $slider_enabled = x_get_option( 'x_ethos_post_slider_' . $info[0] . '_enable', '' ) == '1';
   $count          = x_get_option( 'x_ethos_post_slider_' . $info[0] . '_count' );
   $display        = x_get_option( 'x_ethos_post_slider_' . $info[0] . '_display' );
 
@@ -27,13 +28,30 @@ if ( $is_blog || $is_archive ) :
 
   switch ( $display ) {
     case 'most-commented' :
-      $args = array( 'post_type' => 'post', 'posts_per_page' => $count, 'orderby' => 'comment_count', 'order' => 'DESC', $info[1] => $info[2] );
+      $args = array(
+        'post_type'      => 'post',
+        'posts_per_page' => $count,
+        'orderby'        => 'comment_count',
+        'order'          => 'DESC',
+        $info[1]         => $info[2]
+      );
       break;
     case 'random' :
-      $args = array( 'post_type' => 'post', 'posts_per_page' => $count, 'orderby' => 'rand', $info[1] => $info[2] );
+      $args = array(
+        'post_type'      => 'post',
+        'posts_per_page' => $count,
+        'orderby'        => 'rand',
+        $info[1]         => $info[2]
+      );
       break;
     case 'featured' :
-      $args = array( 'post_type' => 'post', 'posts_per_page' => $count, 'orderby' => 'post__in', 'post__in' => x_intval_explode( x_get_option( 'x_ethos_post_slider_' . $info[0] . '_featured' ) ) );
+      $args = array(
+        'post_type'      => 'post',
+        'posts_per_page' => $count,
+        'orderby'        => 'date',
+        'meta_key'       => $info[3],
+        'meta_value'     => 'on'
+      );
       break;
   }
 
@@ -56,7 +74,7 @@ if ( $is_blog || $is_archive ) :
                     <div class="middle">
                       <span class="featured-meta"><?php echo x_ethos_post_categories(); ?> / <?php echo get_the_date( 'F j, Y' ); ?></span>
                       <h2 class="h-featured"><span><?php x_the_alternate_title(); ?></span></h2>
-                      <span class="featured-view">View Post</span>
+                      <span class="featured-view"><?php _e( 'View Post', '__x__' ); ?></span>
                     </div>
                   </div>
                 </a>
@@ -76,8 +94,8 @@ if ( $is_blog || $is_archive ) :
         jQuery('.x-post-slider').flexslider({
           controlNav   : false,
           selector     : '.x-slides > li',
-          prevText     : '<i class="x-icon-chevron-left"></i>',
-          nextText     : '<i class="x-icon-chevron-right"></i>',
+          prevText     : '<i class="x-icon-chevron-left" data-x-icon="&#xf053;"></i>',
+          nextText     : '<i class="x-icon-chevron-right" data-x-icon="&#xf054;"></i>',
           animation    : 'fade',
           smoothHeight : true,
           slideshow    : true

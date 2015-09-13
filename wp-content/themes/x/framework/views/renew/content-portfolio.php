@@ -50,5 +50,4 @@
     <?php endif; ?>
 
   </div>
-  <?php x_google_authorship_meta(); ?>
 </article>

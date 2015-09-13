@@ -32,7 +32,7 @@ if ( ! function_exists( 'x_body_class' ) ) :
 
     $is_blog                          = is_home();
     $blog_style_masonry               = x_get_option( 'x_blog_style', 'standard' ) == 'masonry';
-    $post_meta_disabled               = x_get_option( 'x_blog_enable_post_meta', 0 ) == 0;
+    $post_meta_disabled               = x_get_option( 'x_blog_enable_post_meta', '' ) == '';
 
     $is_archive                       = is_archive();
     $archive_style_masonry            = x_get_option( 'x_archive_style', 'standard' ) == 'masonry';
@@ -41,12 +41,13 @@ if ( ! function_exists( 'x_body_class' ) ) :
     $is_page                          = is_page();
     $page_title_disabled              = get_post_meta( $entry_id, '_x_entry_disable_page_title', true ) == 'on';
 
-    $portfolio_meta_disabled          = x_get_option( 'x_portfolio_enable_post_meta', 0 ) == 0;
+    $is_portfolio                     = is_page_template( 'template-layout-portfolio.php' );
+    $portfolio_meta_disabled          = x_get_option( 'x_portfolio_enable_post_meta', '' ) == '';
 
     $integrity_design_dark            = x_get_option( 'x_integrity_design', 'light' ) == 'dark';
     $icon_blank_sidebar_active        = $stack == 'icon' && get_post_meta( $entry_id, '_x_icon_blank_template_sidebar', true ) == 'Yes'; 
-    $ethos_post_slider_blog_active    = $stack == 'ethos' && is_home() && x_get_option( 'x_ethos_post_slider_blog_enable' ) == 1;
-    $ethos_post_slider_archive_active = $stack == 'ethos' && ( is_category() || is_tag() ) && x_get_option( 'x_ethos_post_slider_archive_enable' ) == 1;
+    $ethos_post_slider_blog_active    = $stack == 'ethos' && is_home() && x_get_option( 'x_ethos_post_slider_blog_enable', '' ) == 1;
+    $ethos_post_slider_archive_active = $stack == 'ethos' && ( is_category() || is_tag() ) && x_get_option( 'x_ethos_post_slider_archive_enable', '' ) == 1;
 
     $custom_class                     = get_post_meta( $entry_id, '_x_entry_body_css_class', true );
 
@@ -83,6 +84,10 @@ if ( ! function_exists( 'x_body_class' ) ) :
       case 'fixed-right' :
         $output[] .= 'x-navbar-fixed-right-active';
         break;
+    }
+
+    if ( x_is_one_page_navigation() ) {
+      $output[] .= 'x-one-page-navigation-active';
     }
 
 
@@ -162,6 +167,10 @@ if ( ! function_exists( 'x_body_class' ) ) :
     // Portfolio.
     //
 
+    if ( $is_portfolio ) {
+      $output[] .= 'x-masonry-active x-portfolio-masonry-active';
+    }
+
     if ( $portfolio_meta_disabled ) {
       $output[] .= 'x-portfolio-meta-disabled';
     }
@@ -228,6 +237,7 @@ if ( ! function_exists( 'x_admin_body_class' ) ) :
 
     $screen = get_current_screen();
 
+    $classes .= ' x-theme-active';
     $classes .= ' x-' . x_get_stack();
 
     if ( $screen->base == 'widgets' ) {
@@ -284,7 +294,6 @@ if ( ! function_exists( 'x_brand_class' ) ) :
     echo $output;
 
   }
-  add_action( 'customize_save', 'x_brand_class' );
 endif;
 
 
@@ -307,7 +316,6 @@ if ( ! function_exists( 'x_masthead_class' ) ) :
     echo $output;
 
   }
-  add_action( 'customize_save', 'x_masthead_class' );
 endif;
 
 
@@ -333,7 +341,6 @@ if ( ! function_exists( 'x_navbar_class' ) ) :
     echo $output;
 
   }
-  add_action( 'customize_save', 'x_navbar_class' );
 endif;
 
 
@@ -377,7 +384,6 @@ if ( ! function_exists( 'x_main_content_class' ) ) :
     echo $output;
 
   }
-  add_action( 'customize_save', 'x_main_content_class' );
 endif;
 
 
@@ -402,7 +408,6 @@ if ( ! function_exists( 'x_sidebar_class' ) ) :
     echo $output;
 
   }
-  add_action( 'customize_save', 'x_sidebar_class' );
 endif;
 
 

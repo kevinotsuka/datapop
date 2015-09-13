@@ -36,5 +36,4 @@ $link                     = get_post_meta( get_the_ID(), '_x_link_url',  true );
       <?php endif; ?>
     </div>
   <?php endif; ?>
-  <?php x_google_authorship_meta(); ?>
 </article>

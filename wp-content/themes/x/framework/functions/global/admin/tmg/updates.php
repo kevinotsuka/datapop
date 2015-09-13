@@ -17,6 +17,7 @@
 // =============================================================================
 
 if ( ! class_exists( 'X_TGM_Automatic_Update' ) ) :
+
   class X_TGM_Automatic_Update {
 
     function __construct() {
@@ -26,13 +27,13 @@ if ( ! class_exists( 'X_TGM_Automatic_Update' ) ) :
 
 
     //
-    // Block wordpress.org repo for plugins with manage_upgrade set.
+    // Block wordpress.org repo for plugins with x_manage_upgrade set.
     //
 
     function x_override_update_api( $res, $action, $args ) {
 
       foreach ( TGM_Plugin_Activation::$instance->plugins as $plugin ) {
-        if ( isset( $args->slug ) && $args->slug == $plugin['slug'] && isset( $plugin['manage_upgrade'] ) && $plugin['manage_upgrade'] != '' ) {
+        if ( isset( $args->slug ) && $args->slug == $plugin['slug'] && isset( $plugin['x_manage_upgrade'] ) && $plugin['x_manage_upgrade'] == true ) {
 
           $res           = new stdClass;
           $res->name     = $plugin['name'];
@@ -60,7 +61,7 @@ if ( ! class_exists( 'X_TGM_Automatic_Update' ) ) :
       $installed_plugins = get_plugins();
 
       foreach ( TGM_Plugin_Activation::$instance->plugins as $plugin ) {
-        if ( isset( $plugin['version'] ) && isset( $plugin['manage_upgrade'] ) && $plugin['manage_upgrade'] != '' && version_compare( $installed_plugins[$plugin['manage_upgrade']]["Version"], $plugin['version'], '<' ) ) {
+        if ( isset( $installed_plugins[$plugin['x_plugin']]['Version'] ) && isset( $plugin['version'] ) && isset( $plugin['x_manage_upgrade'] ) && $plugin['x_manage_upgrade'] == true && version_compare( $installed_plugins[$plugin['x_plugin']]['Version'], $plugin['version'], '<' ) ) {
 
           $response                 = new stdClass;
           $response->url            = '';
@@ -69,7 +70,7 @@ if ( ! class_exists( 'X_TGM_Automatic_Update' ) ) :
           $response->new_version    = $plugin['version'];
           $response->package        = $plugin['source'];
 
-          $transient->response[$plugin['manage_upgrade']] = $response;
+          $transient->response[$plugin['x_plugin']] = $response;
 
         }
       }
@@ -82,4 +83,5 @@ if ( ! class_exists( 'X_TGM_Automatic_Update' ) ) :
   if ( class_exists( 'TGM_Plugin_Activation' ) ) {
     new X_TGM_Automatic_Update();
   }
+
 endif;

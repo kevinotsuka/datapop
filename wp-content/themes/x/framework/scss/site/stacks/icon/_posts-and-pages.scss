@@ -44,7 +44,8 @@
 // All Posts and Pages
 // =============================================================================
 
-.hentry {
+.hentry,
+.search-results .x-container > .product {
   .entry-wrap {
     position: relative;
     border-top: 1px solid $baseBorderSolid;
@@ -66,14 +67,6 @@
     .entry-wrap {
       border-bottom: 1px solid $baseBorderSolid;
       border-bottom: 1px solid $baseBorderRgba;
-    }
-  }
-
-  p,
-  ul,
-  ol {
-    &:last-child {
-      margin-bottom: 0;
     }
   }
 }
@@ -210,7 +203,7 @@ a.entry-thumb:hover {
 }
 
 .p-meta {
-  margin-top: 1%;
+  margin: 1% 0 0;
   font-size: 125%;
   line-height: 1;
   text-align: center;
@@ -238,6 +231,14 @@ a.entry-thumb:hover {
   object {
     width: 100%;
     max-width: 100%;
+  }
+
+  > p,
+  > ul,
+  > ol {
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   .more-link {
@@ -393,8 +394,7 @@ a.entry-thumb:hover {
 
   &.has-post-thumbnail {
     .entry-featured {
-      .x-responsive-audio-embed,
-      .jp-controls-container-audio {
+      .x-audio {
         position: absolute;
         left: 20px;
         right: 20px;
@@ -568,7 +568,7 @@ a.entry-thumb:hover {
       padding: 10px;
     }
 
-    .x-container-fluid.max.width {
+    .x-container.max.width {
       width: 100%;
       max-width: none;
     }
@@ -597,7 +597,7 @@ a.entry-thumb:hover {
 // =============================================================================
 
 .page .hentry {
-  &:last-child {
+  .entry-wrap:last-child {
     border-bottom: 0;
   }
 
@@ -659,14 +659,9 @@ a.entry-thumb:hover {
 .page-template-template-blank-5-php,
 .page-template-template-blank-6-php,
 .page-template-template-blank-8-php {
-  .hentry {
+  .hentry .entry-wrap {
     padding: 0;
   }
-}
-
-.page-template-template-layout-content-sidebar-php,
-.page-template-template-layout-sidebar-content-php {
-  padding: 0 !important;
 }
 
 [class*="page-template-template-blank"] {
@@ -678,6 +673,21 @@ a.entry-thumb:hover {
   &.x-content-sidebar-active .x-widgetbar,
   &.x-content-sidebar-active .x-navbar-fixed-top {
     right: 0;
+  }
+}
+
+.page-template-template-layout-content-sidebar-php,
+.page-template-template-layout-sidebar-content-php {
+  padding: 0 !important;
+
+  .site {
+    width: 100%;
+    max-width: none;
+    border: 0;
+  }
+
+  .hentry .entry-wrap {
+    border: 0
   }
 }
 

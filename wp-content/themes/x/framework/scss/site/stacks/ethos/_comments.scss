@@ -17,7 +17,9 @@
 // Comment Container
 // =============================================================================
 
-.x-comments-area {  }
+.x-comments-area {
+  margin: $layoutSpacing 0 0;
+}
 
 
 
@@ -27,7 +29,7 @@
 .h-comments-title,
 #reply-title {
   overflow: hidden;
-  margin: $layoutSpacing 0;
+  margin: 0 0 $layoutSpacing;
   font-size: 150%;
   line-height: 1.05;
 
@@ -342,7 +344,7 @@ article.comment {
 // =============================================================================
 
 #respond {
-  margin-bottom: $layoutSpacing;
+
 }
 
 #commentform {

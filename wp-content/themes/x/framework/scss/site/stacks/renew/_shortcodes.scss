@@ -12,28 +12,28 @@
 //   03. Gap
 //   04. Clear
 //   05. Highlight
-//   06. Quotes
+//   06. Quote
 //       a. Blockquote
 //       b. Pullquote
-//       c. Cite
 //   07. Alert
 //   08. Map
+//       a. Embed
+//       b. Google Map
+//       c. Google Map Marker
 //   09. Skill Bar
 //   10. Code
-//   11. Buttons
-//       a. Individual Buttons
-//       b. Button Group
-//   12. Icons
+//   11. Button
+//   12. Icon
 //   13. Block Grid
 //       a. Grid
 //       b. Grid Item
-//   14. Images
-//   15. Icon list
+//   14. Image
+//   15. Icon List
 //       a. List
 //       b. List Item
 //   16. Popovers and Tooltips
 //   17. Text Columns
-//   18. Responsive Video
+//   18. Video
 //       a. Video Player
 //       b. Video Embed
 //   19. Accordion
@@ -45,7 +45,7 @@
 //       c. Tabs
 //       d. Tab
 //   21. Responsive Visibility
-//   22. Content Columns
+//   22. Column
 //   23. Responsive Slider
 //       a. Slider
 //       b. Slide
@@ -54,7 +54,9 @@
 //   26. Audio
 //       a. Audio Player
 //       b. Audio Embed
-//   27. Responsive Pricing Table
+//   27. Pricing Table
+//       a. Pricing Table
+//       b. Pricing Table Column
 //   28. Callout
 //   29. Promo
 //   30. Post Author
@@ -67,10 +69,12 @@
 //   35. Custom Headline
 //   36. Feature Headline
 //   37. Search
-//   38. Shortcode Container
+//   38. Counter
+//   39. Section
+//   40. Shortcode Container
 // =============================================================================
 
-// Dropcaps
+// Dropcap
 // =============================================================================
 
 .x-dropcap {
@@ -87,31 +91,24 @@
 
 
 
-// Horizontal Rules
+// Horizontal Rule
 // =============================================================================
 
 .x-hr {  }
 
 
 
-// Gaps
+// Gap
 // =============================================================================
 
-.x-gap {
-  margin: $baseMargin 0;
-  border-color: transparent;
-}
+.x-gap {  }
 
 
 
 // Clear
 // =============================================================================
 
-.x-clear {
-  margin: 0;
-  border: 0;
-  clear: both;
-}
+.x-clear {  }
 
 
 
@@ -131,7 +128,7 @@
 
 
 
-// Quotes
+// Quote
 // =============================================================================
 
 //
@@ -140,15 +137,7 @@
 // 3. Cite.
 //
 
-.x-blockquote { // 1
-  &.right-text {
-    text-align: right;
-  }
-
-  &.center-text {
-    text-align: center;
-  }
-}
+.x-blockquote {  } // 1
 
 .x-pullquote { // 2
   width: 40%;
@@ -249,6 +238,14 @@ button.close {
     line-height: 1;
     color: $warningText;
   }
+
+  > p {
+    margin-bottom: 0;
+
+    + p {
+      margin-top: 6px;
+    }
+  }
 }
 
 .x-alert-muted {
@@ -302,15 +299,6 @@ button.close {
   padding: $alertBlockPadding;
 }
 
-.x-alert-block > p,
-.x-alert-block > ul {
-  margin-bottom: 0;
-}
-
-.x-alert-block p + p {
-  margin-top: 6px;
-}
-
 .wpcf7-response-output {
   border-left-width: 5px !important;
   margin: $baseMargin 0 0 !important;
@@ -322,24 +310,7 @@ button.close {
 // Map
 // =============================================================================
 
-.x-map {
-  margin-bottom: $baseMargin;
-
-  .x-map-inner {
-    overflow: hidden;
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-
-    iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-  }
-}
+.x-map {  }
 
 
 
@@ -388,81 +359,32 @@ button.close {
 // Code
 // =============================================================================
 
-.x-code {
-  line-height: 1;
-}
+.x-code {  }
 
 
 
-// Buttons
+// Button
 // =============================================================================
 
-//
-// 1. Individual buttons.
-// 2. Button group.
-//
-
-.x-btn {  } // 1
-
-.x-btn-group {  } // 2
+.x-btn {  }
 
 
 
-// Icons
+// Icon
 // =============================================================================
 
-.x-icon {  }
+[class*="#{$fa-css-prefix}-"] {  }
 
 
 
 // Block Grid
 // =============================================================================
 
-//
-// 1. Grid.
-// 2. Grid item.
-//
-
-.x-block-grid { // 1
-  display: block;
-  overflow: hidden;
-  padding: 0;
-
-  & > li {
-    display: block;
-    height: auto;
-    float: left;
-  }
-
-  @for $i from 2 through 5 {
-    &.#{ convert-number-to-word( $i ) }-up {
-      @if $i == 2 { margin: $baseMargin -1.25%; }
-      @if $i == 3 { margin: $baseMargin -1%; }
-      @if $i == 4 { margin: $baseMargin -0.9%; }
-      @if $i == 5 { margin: $baseMargin -0.85%; }
-
-      & > li {
-        width: 100% / $i;
-        @if $i == 2 { padding: 1.25%; }
-        @if $i == 3 { padding: 1%; }
-        @if $i == 4 { padding: 0.9%; }
-        @if $i == 5 { padding: 0.85%; }
-        @if $i > 1 { &:nth-child( #{$i}n+1 ) { clear: both; } }
-      }
-    }
-  }
-
-  img,
-  .x-img {
-    margin-bottom: 0;
-  }
-}
-
-.x-block-grid-item {  } // 2
+.x-block-grid {  }
 
 
 
-// Images
+// Image
 // =============================================================================
 
 .x-img {
@@ -543,19 +465,7 @@ a.x-img-thumbnail:hover {
 // Icon List
 // =============================================================================
 
-.x-ul-icons {
-  list-style: none;
-  text-indent: -0.85em;
-
-  li {
-    [class^="x-icon-"],
-    [class*=" x-icon-"] {
-      width: 0.85em;
-    }
-  }
-}
-
-.x-li-icon {  }
+.x-ul-icons {  }
 
 
 
@@ -584,70 +494,39 @@ a.x-img-thumbnail:hover {
 
 
 
-// Responsive Video
+// Video
 // =============================================================================
 
-//
-// 1. 9/16 = 0.5625 for 16:9 aspect ratio
-// 2. 3/5 = 0.6 for 5:3 aspect ratio
-// 3. 4/5 = 0.8 for 5:4 aspect ratio
-// 4. 3/4 = 0.75 for 4:3 aspect ratio
-// 5. 2/3 = 0.6667 for 3:2 aspect ratio
-//
-
-.x-responsive-video {
-  &.x-responsive-video-shortcode {
-    margin-bottom: $baseMargin;
-  }
-
-  .x-responsive-video-inner {
-    position: relative;
-    padding-bottom: 56.25%; // 1
-    height: 0;
-    overflow: hidden;
-
-    &.five-by-three { padding-bottom: 60%;    } // 2
-    &.five-by-four  { padding-bottom: 80%;    } // 3
-    &.four-by-three { padding-bottom: 75%;    } // 4
-    &.three-by-two  { padding-bottom: 66.67%; } // 5
-
-    embed,
-    iframe,
-    img,
-    object,
-    video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-  }
-}
+.x-video {  }
 
 
 
 // Accordion
 // =============================================================================
 
-//
-// Parent container.
-//
-
 .x-accordion {
-  margin-bottom: 1.375em;
+  margin-bottom: $baseMargin;
 }
 
 
 //
-// Group == beading + body.
+// Group (heading + body).
 //
 
 .x-accordion-group {
-  margin: 4px 0;
+  margin: 0 0 4px;
   border: 2px solid $shortcodeBorderColor;
   @include transition(#{border-color 0.3s ease});
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
+
+
+//
+// Heading.
+//
 
 .x-accordion-heading {
   border-bottom: 0;
@@ -658,6 +537,7 @@ a.x-img-thumbnail:hover {
     font-size: 124.8%;
     color: $headingsColor;
     background-color: darken($baseModBackground, 2%);
+    cursor: pointer;
 
     &.collapsed {
       background-color: $baseModBackground;
@@ -693,18 +573,7 @@ a.x-img-thumbnail:hover {
 
 
 //
-// General toggle styles.
-//
-
-.x-accordion-toggle {
-  cursor: pointer;
-}
-
-
-//
-// Accordion inner.
-// Needs the styles because you can't animate properly with any stiles on the
-// element.
+// Inner.
 //
 
 .x-accordion-inner {
@@ -723,13 +592,6 @@ a.x-img-thumbnail:hover {
 // Tabbed Content
 // =============================================================================
 
-//
-// 1. Tab nav.
-// 2. Tab nav item.
-// 3. Tabs.
-// 4. Tab.
-//
-
 .x-nav-tabs {  }
 
 .x-nav-tabs-item {  }
@@ -747,78 +609,17 @@ a.x-img-thumbnail:hover {
 
 
 
-// Content Columns
+// Column
 // =============================================================================
 
-.x-column {
-  float: left;
-  margin-right: 4%;
-
-  &.whole         { width: 100%;      }
-  &.one-half      { width: 48%;       }
-  &.one-third     { width: 30.66666%; }
-  &.two-thirds    { width: 65.33332%; }
-  &.one-fourth    { width: 22%;       }
-  &.three-fourths { width: 74%;       }
-  &.one-fifth     { width: 16.8%;     }
-  &.two-fifths    { width: 37.6%;     }
-  &.three-fifths  { width: 58.4%;     }
-  &.four-fifths   { width: 79.2%;     }
-  &.one-sixth     { width: 13.33332%; }
-  &.five-sixths   { width: 82.66666%; }
-
-  &.one-half,
-  &.one-third,
-  &.two-thirds,
-  &.one-fourth,
-  &.three-fourths,
-  &.one-fifth,
-  &.two-fifths,
-  &.three-fifths,
-  &.four-fifths,
-  &.one-sixth,
-  &.five-sixths {
-    @include break(middle-bear) {
-      float: none;
-      width: 100%;
-      margin-right: 0;
-    }
-  }
-
-  &.last {
-    margin-right: 0;
-  }
-}
-
-.js {
-  .x-column {
-    position: relative;
-
-    &[data-fade="true"] {
-      opacity: 0;
-    }
-  }
-}
+@include column();
 
 
 
 // Responsive Slider
 // =============================================================================
 
-//
-// 1. Slider
-// 2. Slide
-//
-
-.x-flexslider-shortcode-container {
-  margin-bottom: $baseMargin;
-
-  .x-flexslider-shortcode {
-    margin: 0;
-  }
-}
-
-.x-slide {  }
+.x-flexslider-shortcode-container {  }
 
 
 
@@ -871,7 +672,7 @@ a.x-img-thumbnail:hover {
     display: block;
     margin: 0 4% 0 0;
     border: 2px solid $shortcodeBorderColor;
-    padding: 4px 4px 0;
+    padding: 5px 5px 0;
     color: #999;
     background-color: $baseModBackground;
     @include translate3d(0, 0, 0);
@@ -881,23 +682,23 @@ a.x-img-thumbnail:hover {
     }
 
     &:hover {
-      color: #999;
-
-      img {
-        @include opacity(0);
+      .no-post-thumbnail {
+        .x-recent-posts-img {
+          &:before { opacity: 1; }
+          &:after  { opacity: 1; }
+        }
       }
 
-      .x-recent-posts-img {
-        background-color: $linkColorHover;
-      }
-
-      .h-recent-posts {
-        color: $linkColorHover;
+      .has-post-thumbnail {
+        .x-recent-posts-img {
+          &:before { opacity: 1;    }
+          &:after  { opacity: 0.85; }
+        }
       }
     }
 
     &.no-image {
-      padding: 5px;
+      padding: 0 5px;
     }
 
     &.x-recent-post1 {
@@ -968,43 +769,50 @@ a.x-img-thumbnail:hover {
     }
   }
 
-  img {
-    position: relative;
-    min-width: 100%;
-    border-radius: 2px;
-    z-index: 1;
-    @include transition(#{opacity 0.6s ease});
-  }
-
   .x-recent-posts-img {
-    overflow: hidden;
     position: relative;
-    padding-bottom: 55.8823529%;
-    background-color: $linkColor;
-    @include transition(#{background-color 0.3s ease});
+    padding-bottom: 56.25%;
+    background: center center/cover no-repeat;
 
-    &:before {
+    &:before,
+    &:after {
       display: block;
       position: absolute;
+      opacity: 0;
+      @include transition(#{opacity 0.3s ease});
+    }
+
+    &:before {
       margin: -30px 0 0 -30px;
       top: 50%;
       left: 50%;
       width: 60px;
       height: 60px;
       @include font-size(3.2);
-      line-height: 59px;
+      line-height: 60px;
       text-align: center;
-      vertical-align: middle;
       color: $white;
-      background-color: $linkColor;
-      border-radius: 100em;
-      z-index: 0;
+      z-index: 2;
       @include font-awesome();
+    }
+
+    &:after {
+      content: "";
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: $linkColor;
+      border-radius: 2px;
+      z-index: 1;
     }
   }
 
-  .has-post-thumbnail .x-recent-posts-img {
-    padding: 0;
+  .no-post-thumbnail {
+    .x-recent-posts-img {
+      &:before { opacity: 0.35; }
+      &:after  { opacity: 1;   }
+    }
   }
 
   .format-standard .x-recent-posts-img:before { content: "\f0f6"; }
@@ -1014,37 +822,31 @@ a.x-img-thumbnail:hover {
   .format-gallery .x-recent-posts-img:before  { content: "\f03e"; }
   .format-link .x-recent-posts-img:before     { content: "\f0c1"; }
   .format-quote .x-recent-posts-img:before    { content: "\f10d"; }
-  .x-portfolio .x-recent-posts-img:before     {
-    content: "\f067";
-    line-height: 62px;
-  }
+  .x-portfolio .x-recent-posts-img:before     { content: "\f067"; }
 
   .x-recent-posts-content {
-    border-top: 0;
-    padding: 0.65em 0.75em 0.775em;
-    border-radius: 0 0 3px 3px;
+    padding: 10px 5px;
   }
 
   .h-recent-posts,
   .x-recent-posts-date {
     display: block;
-    line-height: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    @include text-overflow();
   }
 
   .h-recent-posts {
-    margin: 0 0 2px;
-    padding-bottom: 4px;
+    margin: -1px 0 5px;
     @include font-size(1.7);
+    line-height: 1.2;
     @include transition(#{color 0.3s ease});
   }
 
   .x-recent-posts-date {
     margin: 0;
     @include font-size(1.0);
+    line-height: 1;
     text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.65);
   }
 
   &.vertical {
@@ -1081,14 +883,11 @@ a.x-img-thumbnail:hover {
 // Audio
 // =============================================================================
 
-.x-audio {
-  position: relative;
-  margin-bottom: $baseMargin;
-}
+.x-audio {  }
 
 
 
-// Responsive Pricing Table
+// Pricing Table
 // =============================================================================
 
 .x-pricing-table {
@@ -1205,7 +1004,7 @@ a.x-img-thumbnail:hover {
       line-height: 1.4;
       text-transform: uppercase;
 
-      [class*="x-icon"] {
+      [class*="#{$fa-css-prefix}-"] {
         margin-left: 0.85em;
       }
 
@@ -1232,7 +1031,7 @@ a.x-img-thumbnail:hover {
 
 .x-callout {
   position: relative;
-  margin: ($baseMargin * 2) 0;
+  margin: $baseMargin 0;
   padding: 2.35em;
   @include font-size(2.1);
   background-color: $shortcodeBorderColor;
@@ -1438,62 +1237,7 @@ a.x-img-thumbnail:hover {
 // Content Band
 // =============================================================================
 
-.x-content-band {
-  margin: 0 0 $baseMargin;
-  padding: 40px 0;
-  @include clearfix();
-
-  &.bg-image,
-  &.bg-pattern {
-    background-position: 50% 50%;
-
-    &.parallax {
-      background-attachment: fixed;
-    }
-  }
-
-  &.bg-image {
-    -webkit-background-size: cover;
-            background-size: cover;
-    background-repeat: no-repeat;
-  }
-
-  &.bg-pattern {
-    background-repeat: repeat;
-  }
-
-  &.bg-video {
-    position: relative;
-    overflow: hidden;
-  }
-
-  &.border-top {
-    border-top: 1px solid #ddd;
-    border-top: 1px solid rgba(0, 0, 0, 0.075);
-  }
-
-  &.border-left {
-    border-left: 1px solid #ddd;
-    border-left: 1px solid rgba(0, 0, 0, 0.075);
-  }
-
-  &.border-right {
-    border-right: 1px solid #ddd;
-    border-right: 1px solid rgba(0, 0, 0, 0.075);
-  }
-
-  &.border-bottom {
-    border-bottom: 1px solid #ddd;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.075);
-  }
-
-  > .x-column:last-child,
-  > .vc-element:last-child > .x-column,
-  > .x-container-fluid > .x-column:last-child,
-  > .x-container-fluid > .vc-element:last-child > .x-column {
-    margin-right: 0;
-  }
-}
+@include content_band();
 
 
 
@@ -1506,12 +1250,12 @@ a.x-img-thumbnail:hover {
   border-left: 0;
   border-right: 0;
   padding: 10px 0;
-  @include font-size(1.2);
   line-height: 1;
   text-align: center;
 
   p {
     margin: 8px 0 10px;
+    @include font-size(1.2);
     font-weight: 400;
     text-transform: uppercase;
   }
@@ -1527,17 +1271,6 @@ a.x-img-thumbnail:hover {
     &:hover {
       color: #fff;
       background-color: $linkColor;
-    }
-
-    &.email {
-      position: relative;
-      top: -2px;
-
-      span {
-        position: relative;
-        top: -2px;
-        @include font-size(2.3);
-      }
     }
   }
 }
@@ -1694,13 +1427,17 @@ a.x-img-thumbnail:hover {
 
   span {
     display: inline-block;
+    position: relative;
+    padding-left: 1.5em;
 
     i {
-      float: left;
+      position: absolute;
+      top: 50%;
+      left: 0;
       width: 2em;
       height: 2em;
-      margin-right: 0.25em;
-      font-size: 1em;
+      margin-top: -1em;
+      font-size: 0.65em;
       line-height: 2em;
       text-align: center;
       color: $white;
@@ -1710,56 +1447,26 @@ a.x-img-thumbnail:hover {
   }
 }
 
-h1,
-.h1 {
-  &.h-feature-headline span i {
-    margin-top: -0.335em;
-  }
-}
-
-h2,
-.h2 {
-  &.h-feature-headline span i {
-    margin-top: -0.335em;
-  }
-}
-
-h3,
-.h3 {
-  &.h-feature-headline span i {
-    margin-top: -0.285em;
-  }
-}
-
-h4,
-.h4 {
-  &.h-feature-headline span i {
-    margin-top: -0.275em;
-  }
-}
-
-h5,
-.h5 {
-  &.h-feature-headline span i {
-    margin-top: -0.265em;
-  }
-}
-
-h6,
-.h6 {
-  &.h-feature-headline span i {
-    margin-top: -0.255em;
-  }
-}
-
 
 
 // Search
 // =============================================================================
 
-.x-search-shortcode {
-  margin-bottom: $baseMargin;
-}
+.x-search-shortcode {  }
+
+
+
+// Counter
+// =============================================================================
+
+.x-counter {  }
+
+
+
+// Section
+// =============================================================================
+
+@include section();
 
 
 

@@ -10,7 +10,7 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
   <div class="entry-wrap">
-    <div class="x-container-fluid max width">
+    <div class="x-container max width">
 
       <?php if ( x_is_portfolio_item() ) : ?>
 
@@ -38,5 +38,4 @@
 
     </div>
   </div>
-  <?php x_google_authorship_meta(); ?>
 </article>

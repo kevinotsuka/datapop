@@ -36,5 +36,4 @@ $cite  = get_post_meta( get_the_ID(), '_x_quote_cite',  true );
     <?php endif; ?>
   </div>
   <?php x_get_view( 'integrity', '_content', 'post-footer' ); ?>
-  <?php x_google_authorship_meta(); ?>
 </article>

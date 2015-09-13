@@ -7,7 +7,8 @@
 //
 // Some of the methods defined below require at least PHP 5.4 due to $this
 // being unavailable in anonymous functions before that version. Keep this in
-// mind when attempting to utilize x_dump_screen() and x_dump_object().
+// mind when attempting to utilize x_dump_screen() and x_dump_object(). We do
+// provide a fallback for older versions of PHP, but without stylized output.
 // =============================================================================
 
 // =============================================================================
@@ -36,21 +37,36 @@ class X_Debug {
 
   public function x_dump( $data, $height = '250', $function = 'print_r' ) {
 
-    if ( is_array( $data ) ) {
-      array_walk_recursive( $data, 'SELF::x_clean_dump' );
-    } elseif ( is_object( $data ) ) {
-      $data;
-    } else {
-      $this->x_clean_dump( $data );
-    }
+    if ( version_compare( PHP_VERSION, '5.4.0' ) >= 0 ) {
 
-    echo '<pre class="x-dump" style="-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; position: fixed; bottom: 0; left: 0; right: 0; z-index: 999999999; display: block; overflow: auto; max-height: ' . $height . 'px; margin: 36px; border: 0; padding: 23px 25px; font-size: 16px; line-height: 1.5; word-wrap: break-word; color: #000; background-color: #fff; border-radius: 0; box-shadow: 0 3px 35px rgba(0, 0, 0, 0.5);">';
-      if ( $function == 'print_r' ) {
-        print_r( $data );
+      if ( is_array( $data ) ) {
+        array_walk_recursive( $data, 'self::x_clean_dump' );
+      } elseif ( is_object( $data ) ) {
+        $data = (array) $data;
+        array_walk_recursive( $data, 'self::x_clean_dump' );
       } else {
-        var_dump( $data );
+        $this->x_clean_dump( $data );
       }
-    echo '</pre>';
+
+      echo '<pre class="x-dump" style="-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; position: fixed; bottom: 0; left: 0; right: 0; z-index: 999999999; display: block; overflow: auto; max-height: ' . $height . 'px; margin: 36px; border: 0; padding: 23px 25px; font-family: Consolas, Courier, monospace; font-size: 16px; line-height: 1.5; word-wrap: break-word; color: #000; background-color: #fff; border-radius: 0; box-shadow: 0 3px 35px rgba(0, 0, 0, 0.5);">';
+        if ( $function == 'print_r' ) {
+          print_r( $data );
+        } else {
+          var_dump( $data );
+        }
+      echo '</pre>';
+
+    } else {
+
+      echo '<pre class="x-dump" style="-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; position: fixed; bottom: 0; left: 0; right: 0; z-index: 999999999; display: block; overflow: auto; max-height: ' . $height . 'px; margin: 36px; border: 0; padding: 23px 25px; font-family: Consolas, Courier, monospace; font-size: 16px; line-height: 1.5; word-wrap: break-word; color: #000; background-color: #fff; border-radius: 0; box-shadow: 0 3px 35px rgba(0, 0, 0, 0.5);">';
+        if ( $function == 'print_r' ) {
+          print_r( $data );
+        } else {
+          var_dump( $data );
+        }
+      echo '</pre>';
+
+    }
 
   }
 
@@ -111,13 +127,13 @@ class X_Debug {
 //
 
 function x_dump( $data, $height = 250, $function = 'print_r' ) {
-  $d = new X_Debug(); $d->x_dump( $data, $height, $function );  
+  $d = new X_Debug(); $d->x_dump( $data, $height, $function );
 }
 
 function x_dump_screen() {
-  $d = new X_Debug(); $d->x_dump_screen();  
+  $d = new X_Debug(); $d->x_dump_screen();
 }
 
 function x_dump_object() {
-  $d = new X_Debug(); $d->x_dump_object();  
+  $d = new X_Debug(); $d->x_dump_object();
 }

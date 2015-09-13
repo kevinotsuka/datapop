@@ -10,26 +10,23 @@
 
 <?php x_get_view( 'global', '_header' ); ?>
 
-  <div id="top" class="site">
+  <?php x_get_view( 'global', '_slider-above' ); ?>
+  <?php x_get_view( 'global', '_slider-below' ); ?>
 
-    <?php x_get_view( 'global', '_slider-revolution-above' ); ?>
-    <?php x_get_view( 'global', '_slider-revolution-below' ); ?>
+  <div class="x-container max width offset">
+    <div class="x-main full" role="main">
 
-    <div class="x-container-fluid max width offset cf">
-      <div class="x-main full" role="main">
+      <?php while ( have_posts() ) : the_post(); ?>
 
-        <?php while ( have_posts() ) : the_post(); ?>
+        <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+          <div class="entry-wrap">
+            <?php x_get_view( 'global', '_content', 'the-content' ); ?>
+          </div>
+        </article>
 
-          <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-            <div class="entry-wrap">
-              <?php x_get_view( 'global', '_content', 'the-content' ); ?>
-            </div>
-            <?php x_google_authorship_meta(); ?>
-          </article>
+      <?php endwhile; ?>
 
-        <?php endwhile; ?>
-
-      </div>
     </div>
+  </div>
 
 <?php get_footer(); ?>

@@ -8,7 +8,7 @@
 // =============================================================================
 
 $disable_page_title = get_post_meta( get_the_ID(), '_x_entry_disable_page_title', true );
-$breadcrumbs        = x_get_option( 'x_breadcrumb_display' );
+$breadcrumbs        = x_get_option( 'x_breadcrumb_display', '1' );
 
 ?>
 
@@ -18,7 +18,7 @@ $breadcrumbs        = x_get_option( 'x_breadcrumb_display' );
   <?php else : ?>
 
     <header class="x-header-landmark">
-      <div class="x-container-fluid max width">
+      <div class="x-container max width">
         <div class="x-landmark-breadcrumbs-wrap">
           <div class="x-landmark">
 
@@ -100,7 +100,7 @@ $breadcrumbs        = x_get_option( 'x_breadcrumb_display' );
 
           </div>
 
-          <?php if ( $breadcrumbs == 1 ) : ?>
+          <?php if ( $breadcrumbs == '1' ) : ?>
             <?php if ( ! is_front_page() && ! x_is_portfolio() ) : ?>
               <div class="x-breadcrumbs-wrap">
                 <?php x_breadcrumbs(); ?>

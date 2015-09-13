@@ -6,7 +6,9 @@
 // @version 1.6.4
 // =============================================================================
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+  exit; // Exit if accessed directly
+}
 
 GLOBAL $product, $woocommerce_loop;
 
@@ -28,10 +30,10 @@ $products = new WP_Query( $args );
 
 $woocommerce_loop['columns'] = $columns;
 
-$enable  = x_get_option( 'x_woocommerce_product_related_enable', 1 );
+$enable  = x_get_option( 'x_woocommerce_product_related_enable', '1' );
 $columns = x_get_option( 'x_woocommerce_product_related_columns', '4' );
 
-if ( $products->have_posts() && $enable == 1 ) : ?>
+if ( $products->have_posts() && $enable == '1' ) : ?>
 
   <div class="related products cols-<?php echo $columns; ?>">
 

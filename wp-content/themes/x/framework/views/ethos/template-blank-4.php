@@ -20,7 +20,6 @@
         <?php endwhile; ?>
 
       </div>
-      <?php x_google_authorship_meta(); ?>
     </article>
   </div>
 

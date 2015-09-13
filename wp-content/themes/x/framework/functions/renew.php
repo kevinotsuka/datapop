@@ -20,14 +20,28 @@
 if ( ! function_exists( 'x_renew_entry_meta' ) ) :
   function x_renew_entry_meta() {
 
+    //
+    // Author.
+    //
+
     $author = sprintf( '<span>%s</span>',
       get_the_author()
     );
 
+
+    //
+    // Date.
+    //
+
     $date = sprintf( '<span><time class="entry-date" datetime="%1$s">%2$s</time></span>',
       esc_attr( get_the_date( 'c' ) ),
-      esc_html( get_the_date( 'm.Y' ) )
+      esc_html( get_the_date() )
     );
+
+
+    //
+    // Categories.
+    //
 
     if ( get_post_type() == 'x-portfolio' ) {
       if ( has_term( '', 'portfolio-category', NULL ) ) {
@@ -71,32 +85,41 @@ if ( ! function_exists( 'x_renew_entry_meta' ) ) :
       );
     }
 
+
+    //
+    // Comments link.
+    //
+
     if ( comments_open() ) {
-      $title  = get_the_title();
-      $link   = get_comments_link();
-      $number = get_comments_number();
+
+      $title  = apply_filters( 'x_entry_meta_comments_title', get_the_title() );
+      $link   = apply_filters( 'x_entry_meta_comments_link', get_comments_link() );
+      $number = apply_filters( 'x_entry_meta_comments_number', get_comments_number() );
+
       if ( $number == 0 ) {
-        $comments = sprintf( '<span><a href="%1$s" title="%2$s" class="meta-comments">%3$s</a></span>',
-          esc_url( $link ),
-          esc_attr( sprintf( __( 'Leave a comment on: &ldquo;%s&rdquo;', '__x__' ), $title ) ),
-          __( 'Leave a Comment' , '__x__' )
-        );
+        $text = __( 'Leave a Comment' , '__x__' );
       } else if ( $number == 1 ) {
-        $comments = sprintf( '<span><a href="%1$s" title="%2$s" class="meta-comments">%3$s</a></span>',
-          esc_url( $link ),
-          esc_attr( sprintf( __( 'Leave a comment on: &ldquo;%s&rdquo;', '__x__' ), $title ) ),
-          $number . ' ' . __( 'Comment' , '__x__' )
-        );
+        $text = $number . ' ' . __( 'Comment' , '__x__' );
       } else {
-        $comments = sprintf( '<span><a href="%1$s" title="%2$s" class="meta-comments">%3$s</a></span>',
-          esc_url( $link ),
-          esc_attr( sprintf( __( 'Leave a comment on: &ldquo;%s&rdquo;', '__x__' ), $title ) ),
-          $number . ' ' . __( 'Comments' , '__x__' )
-        );
+        $text = $number . ' ' . __( 'Comments' , '__x__' );
       }
+
+      $comments = sprintf( '<span><a href="%1$s" title="%2$s" class="meta-comments">%3$s</a></span>',
+        esc_url( $link ),
+        esc_attr( sprintf( __( 'Leave a comment on: &ldquo;%s&rdquo;', '__x__' ), $title ) ),
+        $text
+      );
+
     } else {
+
       $comments = '';
+
     }
+
+
+    //
+    // Output.
+    //
 
     if ( x_does_not_need_entry_meta() ) {
       return;
@@ -124,7 +147,7 @@ if ( ! function_exists( 'x_renew_portfolio_tags' ) ) :
 
     echo '<ul class="x-ul-icons">';
     foreach( $terms as $term ) {
-      echo '<li class="x-li-icon"><a href="' . get_term_link( $term->slug, 'portfolio-tag' ) . '"><i class="x-icon-chevron-right"></i>' . $term->name . '</a></li>';
+      echo '<li class="x-li-icon"><a href="' . get_term_link( $term->slug, 'portfolio-tag' ) . '"><i class="x-icon-chevron-right" data-x-icon="&#xf054;"></i>' . $term->name . '</a></li>';
     };
     echo '</ul>';
 
@@ -173,7 +196,7 @@ if ( ! function_exists( 'x_renew_comment' ) ) :
         ?>
         <?php if ( ! x_is_product() ) : ?>
         <div class="x-reply">
-          <?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply <span class="comment-reply-link-after"><i class="x-icon-reply"></i></span>', '__x__' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+          <?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply <span class="comment-reply-link-after"><i class="x-icon-reply" data-x-icon="&#xf112;"></i></span>', '__x__' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
         </div>
         <?php endif; ?>
         <div class="x-comment-wrap">
@@ -184,8 +207,8 @@ if ( ! function_exists( 'x_renew_comment' ) ) :
             );
             if ( x_is_product() && get_option('woocommerce_enable_review_rating') == 'yes' ) : ?>
               <div class="star-rating-container">
-                <div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating" class="star-rating" title="<?php echo sprintf(__( 'Rated %d out of 5', 'woocommerce' ), $rating) ?>">
-                  <span style="width:<?php echo ( intval( get_comment_meta( $GLOBALS['comment']->comment_ID, 'rating', true ) ) / 5 ) * 100; ?>%"><strong itemprop="ratingValue"><?php echo intval( get_comment_meta( $GLOBALS['comment']->comment_ID, 'rating', true ) ); ?></strong> <?php _e( 'out of 5', 'woocommerce' ); ?></span>
+                <div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating" class="star-rating" title="<?php echo sprintf( __( 'Rated %d out of 5', '__x__' ), $rating ) ?>">
+                  <span style="width:<?php echo ( intval( get_comment_meta( $GLOBALS['comment']->comment_ID, 'rating', true ) ) / 5 ) * 100; ?>%"><strong itemprop="ratingValue"><?php echo intval( get_comment_meta( $GLOBALS['comment']->comment_ID, 'rating', true ) ); ?></strong> <?php _e( 'out of 5', '__x__' ); ?></span>
                 </div>
               </div>
             <?php endif;
@@ -197,7 +220,7 @@ if ( ! function_exists( 'x_renew_comment' ) ) :
                 get_comment_time()
               )
             );
-            edit_comment_link( __( '<i class="x-icon-edit"></i> Edit', '__x__' ) );
+            edit_comment_link( __( '<i class="x-icon-edit" data-x-icon="&#xf044;"></i> Edit', '__x__' ) );
             ?>
           </header>
           <?php if ( '0' == $comment->comment_approved ) : ?>

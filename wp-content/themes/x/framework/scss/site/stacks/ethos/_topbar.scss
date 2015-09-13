@@ -46,7 +46,7 @@
 
   .x-social-global {
     float: right;
-    margin-top: 9px;
+    margin-top: 10px;
     @include translate3d(0, 0, 0);
     @include break(middle-bear) {
       float: none;
@@ -58,7 +58,11 @@
       margin-left: 8px;
       @include font-size(1.7);
       @include break(middle-bear) {
-        margin: 0 1.75%;
+        margin: 0 1.5%;
+      }
+
+      &.foursquare {
+        @include font-size(1.5);
       }
 
       i {

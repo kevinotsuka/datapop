@@ -26,14 +26,29 @@
 if ( ! function_exists( 'x_ethos_entry_meta' ) ) :
   function x_ethos_entry_meta() {
 
-    $author = sprintf( ' by %s</span>',
+    //
+    // Author.
+    //
+
+    $author = sprintf( ' %1$s %2$s</span>',
+      __( 'by', '__x__' ),
       get_the_author()
     );
+
+
+    //
+    // Date.
+    //
 
     $date = sprintf( '<span><time class="entry-date" datetime="%1$s">%2$s</time></span>',
       esc_attr( get_the_date( 'c' ) ),
       esc_html( get_the_date() )
     );
+
+
+    //
+    // Categories.
+    //
 
     if ( get_post_type() == 'x-portfolio' ) {
       if ( has_term( '', 'portfolio-category', NULL ) ) {
@@ -51,7 +66,8 @@ if ( ! function_exists( 'x_ethos_entry_meta' ) ) :
                               . $separator;
         }
 
-        $categories_list = sprintf( '<span>In %s',
+        $categories_list = sprintf( '<span>%1$s %2$s',
+          __( 'In', '__x__' ),
           trim( $categories_output, $separator )
         );
       } else {
@@ -72,37 +88,47 @@ if ( ! function_exists( 'x_ethos_entry_meta' ) ) :
                             . $separator;
       }
 
-      $categories_list = sprintf( '<span>In %s',
+      $categories_list = sprintf( '<span>%1$s %2$s',
+        __( 'In', '__x__' ),
         trim( $categories_output, $separator )
       );
     }
 
+
+    //
+    // Comments link.
+    //
+
     if ( comments_open() ) {
-      $title  = get_the_title();
-      $link   = get_comments_link();
-      $number = get_comments_number();
+
+      $title  = apply_filters( 'x_entry_meta_comments_title', get_the_title() );
+      $link   = apply_filters( 'x_entry_meta_comments_link', get_comments_link() );
+      $number = apply_filters( 'x_entry_meta_comments_number', get_comments_number() );
+
       if ( $number == 0 ) {
-        $comments = sprintf( '<span><a href="%1$s" title="%2$s" class="meta-comments">%3$s</a></span>',
-          esc_url( $link ),
-          esc_attr( sprintf( __( 'Leave a comment on: &ldquo;%s&rdquo;', '__x__' ), $title ) ),
-          __( 'Leave a Comment' , '__x__' )
-        );
+        $text = __( 'Leave a Comment' , '__x__' );
       } else if ( $number == 1 ) {
-        $comments = sprintf( '<span><a href="%1$s" title="%2$s" class="meta-comments">%3$s</a></span>',
-          esc_url( $link ),
-          esc_attr( sprintf( __( 'Leave a comment on: &ldquo;%s&rdquo;', '__x__' ), $title ) ),
-          $number . ' ' . __( 'Comment' , '__x__' )
-        );
+        $text = $number . ' ' . __( 'Comment' , '__x__' );
       } else {
-        $comments = sprintf( '<span><a href="%1$s" title="%2$s" class="meta-comments">%3$s</a></span>',
-          esc_url( $link ),
-          esc_attr( sprintf( __( 'Leave a comment on: &ldquo;%s&rdquo;', '__x__' ), $title ) ),
-          $number . ' ' . __( 'Comments' , '__x__' )
-        );
+        $text = $number . ' ' . __( 'Comments' , '__x__' );
       }
+
+      $comments = sprintf( '<span><a href="%1$s" title="%2$s" class="meta-comments">%3$s</a></span>',
+        esc_url( $link ),
+        esc_attr( sprintf( __( 'Leave a comment on: &ldquo;%s&rdquo;', '__x__' ), $title ) ),
+        $text
+      );
+
     } else {
+
       $comments = '';
+
     }
+
+
+    //
+    // Output.
+    //
 
     if ( x_does_not_need_entry_meta() ) {
       return;
@@ -126,7 +152,7 @@ endif;
 if ( ! function_exists( 'x_ethos_entry_cover_background_image_style' ) ) :
   function x_ethos_entry_cover_background_image_style() {
 
-    $featured_image   = x_get_featured_image_url( 'full' );
+    $featured_image   = x_make_protocol_relative( x_get_featured_image_url() );
     $background_image = ( $featured_image != '' ) ? 'background-image: url(' . $featured_image . ');' : 'background-image: none;';
 
     return $background_image;
@@ -189,7 +215,7 @@ if ( ! function_exists( 'x_ethos_entry_top_navigation' ) ) :
     ?>
 
       <div class="entry-top-navigation">
-        <a href="<?php echo $link; ?>" class="entry-parent" title="<?php $title; ?>"><i class="x-icon-th"></i></a>
+        <a href="<?php echo $link; ?>" class="entry-parent" title="<?php $title; ?>"><i class="x-icon-th" data-x-icon="&#xf00a;"></i></a>
         <?php x_entry_navigation(); ?>
       </div>
 
@@ -219,9 +245,9 @@ if ( ! function_exists( 'x_ethos_featured_index' ) ) :
         <?php if ( $is_index_featured_layout ) : ?>  
           <span class="featured-meta"><?php echo x_ethos_post_categories(); ?> / <?php echo get_the_date( 'F j, Y' ); ?></span>
           <h2 class="h-featured"><span><?php x_the_alternate_title(); ?></span></h2>
-          <span class="featured-view">View Post</span>
+          <span class="featured-view"><?php _e( 'View Post', '__x__' ); ?></span>
         <?php else : ?>
-          <span class="view">View Post</span>
+          <span class="view"><?php _e( 'View Post', '__x__' ); ?></span>
         <?php endif; ?>
       </a>
 
@@ -338,9 +364,9 @@ if ( ! function_exists( 'x_ethos_comment' ) ) :
               );
               ?>
               <?php if ( ! x_is_product() ) : ?>
-                <?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply <span class="comment-reply-link-after"><i class="x-icon-reply"></i></span>', '__x__' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+                <?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply <span class="comment-reply-link-after"><i class="x-icon-reply" data-x-icon="&#xf112;"></i></span>', '__x__' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
               <?php endif; ?>
-              <?php edit_comment_link( __( 'Edit <i class="x-icon-edit"></i>', '__x__' ) ); ?>
+              <?php edit_comment_link( __( 'Edit <i class="x-icon-edit" data-x-icon="&#xf044;"></i>', '__x__' ) ); ?>
             </div>
             <?php
             printf( '<cite class="x-comment-author">%1$s</cite>',
@@ -349,8 +375,8 @@ if ( ! function_exists( 'x_ethos_comment' ) ) :
             ?>
             <?php if ( x_is_product() && get_option( 'woocommerce_enable_review_rating' ) == 'yes' ) : ?>
               <div class="star-rating-container">
-                <div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating" class="star-rating" title="<?php echo sprintf(__( 'Rated %d out of 5', 'woocommerce' ), $rating) ?>">
-                  <span style="width:<?php echo ( intval( get_comment_meta( $GLOBALS['comment']->comment_ID, 'rating', true ) ) / 5 ) * 100; ?>%"><strong itemprop="ratingValue"><?php echo intval( get_comment_meta( $GLOBALS['comment']->comment_ID, 'rating', true ) ); ?></strong> <?php _e( 'out of 5', 'woocommerce' ); ?></span>
+                <div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating" class="star-rating" title="<?php echo sprintf( __( 'Rated %d out of 5', '__x__' ), $rating ) ?>">
+                  <span style="width:<?php echo ( intval( get_comment_meta( $GLOBALS['comment']->comment_ID, 'rating', true ) ) / 5 ) * 100; ?>%"><strong itemprop="ratingValue"><?php echo intval( get_comment_meta( $GLOBALS['comment']->comment_ID, 'rating', true ) ); ?></strong> <?php _e( 'out of 5', '__x__' ); ?></span>
                 </div>
               </div>
             <?php endif; ?>

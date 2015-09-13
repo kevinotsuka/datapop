@@ -114,7 +114,7 @@ input[type="color"],
   margin-bottom: 9px;
   border: 1px solid $inputBorder;
   padding: 0 1.45em;
-  line-height: 1;
+  line-height: normal;
   color: $gray;
   background-color: $inputBackground;
 }
@@ -326,6 +326,14 @@ input[readonly],
 select[readonly],
 textarea[readonly] {
   cursor: not-allowed;
+}
+
+input[disabled]:not(input[type="submit"]),
+select[disabled],
+textarea[disabled],
+input[readonly]:not(input[type="submit"]),
+select[readonly],
+textarea[readonly] {
   background-color: $inputDisabledBackground;
 }
 
@@ -351,17 +359,17 @@ input[type="checkbox"][readonly] {
 // Shares styles with the .control-group.error above.
 //
 
-input:focus:required:invalid,
-textarea:focus:required:invalid,
-select:focus:required:invalid {
-  color: #b94a48;
-  border-color: #ee5f5b;
+// input:focus:required:invalid,
+// textarea:focus:required:invalid,
+// select:focus:required:invalid {
+//   color: #b94a48;
+//   border-color: #ee5f5b;
 
-  &:focus {
-    border-color: darken(#ee5f5b, 10%);
-    @include box-shadow(0 0 6px lighten(#ee5f5b, 20%));
-  }
-}
+//   &:focus {
+//     border-color: darken(#ee5f5b, 10%);
+//     @include box-shadow(0 0 6px lighten(#ee5f5b, 20%));
+//   }
+// }
 
 
 
@@ -390,7 +398,7 @@ select:focus:required:invalid {
   }
 
   .search-query,
-  input[type="text"] {
+  input[type="search"] {
     width: 100%;
     margin-bottom: 0;
     padding-left: 38px;
@@ -447,12 +455,6 @@ input[type="color"] {
 
 input[type="file"] {
   margin-top: $fileMarginTop;
-}
-
-input[type="search"] {
-  height: 32px;
-  padding-top: 0;
-  padding-bottom: 0;
 }
 
 .checkbox input[type="checkbox"] {

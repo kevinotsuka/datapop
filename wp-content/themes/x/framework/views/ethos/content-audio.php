@@ -21,7 +21,7 @@ $is_index_featured_layout = get_post_meta( get_the_ID(), '_x_ethos_index_feature
     <?php elseif ( has_post_thumbnail() && is_single() ) : ?>
       <div class="entry-featured">
         <div class="entry-thumb">
-          <?php echo get_the_post_thumbnail( get_the_ID(), 'entry-full-ethos', NULL ); ?>
+          <?php echo get_the_post_thumbnail( get_the_ID(), 'entry', NULL ); ?>
         </div>
         <?php x_featured_audio(); ?>
       </div>
@@ -36,5 +36,4 @@ $is_index_featured_layout = get_post_meta( get_the_ID(), '_x_ethos_index_feature
       <?php x_get_view( 'global', '_content' ); ?>
     </div>
   <?php endif; ?>
-  <?php x_google_authorship_meta(); ?>
 </article>

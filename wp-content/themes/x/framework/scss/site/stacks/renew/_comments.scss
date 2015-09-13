@@ -18,7 +18,7 @@
 // =============================================================================
 
 .x-comments-area {
-  margin-top: $baseMargin + 2;
+  margin: ($baseMargin + 2) 0 0;
 }
 
 
@@ -285,8 +285,6 @@ span.bypostauthor {
 // =============================================================================
 
 #respond {
-  margin-bottom: 3.5em;
-
   .required {
     font-weight: 700;
   }

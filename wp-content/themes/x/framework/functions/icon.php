@@ -23,7 +23,7 @@ if ( ! function_exists( 'x_icon_entry_meta' ) ) :
 
     $date = sprintf( '<span><time class="entry-date" datetime="%1$s">%2$s</time></span>',
       esc_attr( get_the_date( 'c' ) ),
-      esc_html( get_the_date( 'm.d.Y' ) )
+      esc_html( get_the_date() )
     );
 
     if ( x_does_not_need_entry_meta() ) {
@@ -49,7 +49,7 @@ if ( ! function_exists( 'x_icon_portfolio_tags' ) ) :
 
     echo '<ul class="inline">';
     foreach( $terms as $term ) {
-      echo '<li><a href="' . get_term_link( $term->slug, 'portfolio-tag' ) . '"><i class="x-icon-tag"></i> ' . $term->name . '</a></li>';
+      echo '<li><a href="' . get_term_link( $term->slug, 'portfolio-tag' ) . '"><i class="x-icon-tag" data-x-icon="&#xf02b;"></i> ' . $term->name . '</a></li>';
     };
     echo '</ul>';
 
@@ -90,7 +90,7 @@ if ( ! function_exists( 'x_icon_comment' ) ) :
       endif;
     ?>
     <li id="li-comment-<?php comment_ID(); ?>" <?php comment_class(); ?>>
-      <?php $comment_reply = ( ! x_is_product() ) ? '<div class="x-reply">' . get_comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply<span class="comment-reply-link-after"><i class="x-icon-reply"></i></span>', '__x__' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ) . '</div>' : ''; ?>
+      <?php $comment_reply = ( ! x_is_product() ) ? '<div class="x-reply">' . get_comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply<span class="comment-reply-link-after"><i class="x-icon-reply" data-x-icon="&#xf112;"></i></span>', '__x__' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ) . '</div>' : ''; ?>
       <?php
       printf( '<div class="x-comment-img">%1$s %2$s %3$s</div>',
         '<span class="avatar-wrap cf">' . get_avatar( $comment, 120 ) . '</span>',
@@ -106,8 +106,8 @@ if ( ! function_exists( 'x_icon_comment' ) ) :
           );
           if ( x_is_product() && get_option( 'woocommerce_enable_review_rating' ) == 'yes' ) : ?> 
             <div class="star-rating-container">
-              <div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating" class="star-rating" title="<?php echo sprintf(__( 'Rated %d out of 5', 'woocommerce' ), $rating) ?>">
-                <span style="width:<?php echo ( intval( get_comment_meta( $GLOBALS['comment']->comment_ID, 'rating', true ) ) / 5 ) * 100; ?>%"><strong itemprop="ratingValue"><?php echo intval( get_comment_meta( $GLOBALS['comment']->comment_ID, 'rating', true ) ); ?></strong> <?php _e( 'out of 5', 'woocommerce' ); ?></span>
+              <div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating" class="star-rating" title="<?php echo sprintf( __( 'Rated %d out of 5', '__x__' ), $rating ) ?>">
+                <span style="width:<?php echo ( intval( get_comment_meta( $GLOBALS['comment']->comment_ID, 'rating', true ) ) / 5 ) * 100; ?>%"><strong itemprop="ratingValue"><?php echo intval( get_comment_meta( $GLOBALS['comment']->comment_ID, 'rating', true ) ); ?></strong> <?php _e( 'out of 5', '__x__' ); ?></span>
               </div>
             </div>
           <?php endif;
@@ -116,7 +116,7 @@ if ( ! function_exists( 'x_icon_comment' ) ) :
             get_comment_time( 'c' ),
             $comment_time
           );
-          edit_comment_link( __( '<i class="x-icon-edit"></i> Edit', '__x__' ) );
+          edit_comment_link( __( '<i class="x-icon-edit" data-x-icon="&#xf044;"></i> Edit', '__x__' ) );
           ?>
         </header>
         <?php if ( '0' == $comment->comment_approved ) : ?>
@@ -142,9 +142,11 @@ if ( ! function_exists( 'x_icon_comment_number' ) ) :
   function x_icon_comment_number() {
 
     if ( comments_open() ) {
-      $title  = get_the_title();
-      $link   = get_comments_link();
-      $number = get_comments_number();
+
+      $title  = apply_filters( 'x_entry_meta_comments_title', get_the_title() );
+      $link   = apply_filters( 'x_entry_meta_comments_link', get_comments_link() );
+      $number = apply_filters( 'x_entry_meta_comments_number', get_comments_number() );
+
       if ( $number == 0 ) {
         $comments = '';
       } else {
@@ -154,13 +156,16 @@ if ( ! function_exists( 'x_icon_comment_number' ) ) :
           number_format_i18n( $number )
         );
       }
+
     } else {
+
       $comments = '';
+
     }
 
     $post_type      = get_post_type();
     $post_type_post = $post_type == 'post';
-    $no_post_meta   = x_get_option( 'x_blog_enable_post_meta' ) == 0;
+    $no_post_meta   = x_get_option( 'x_blog_enable_post_meta', '' ) == '';
 
     if ( $post_type_post && $no_post_meta ) {
       return;

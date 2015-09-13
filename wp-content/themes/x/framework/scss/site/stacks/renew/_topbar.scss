@@ -45,7 +45,6 @@
 
   .x-social-global {
     float: right;
-    text-align: right;
     @include break(middle-bear) {
       float: none;
       margin-bottom: 6px;
@@ -53,13 +52,18 @@
     }
 
     a {
-      margin-left: 0.25em;
+      margin-left: 6px;
       width: 32px;
       height: 32px;
       line-height: 32px;
-      @include font-size(1.6);
+      text-align: center;
+      @include font-size(1.8);
       @include break(middle-bear) {
-        margin: 0 0.75%;
+        margin: 0 1%;
+      }
+
+      &.foursquare {
+        @include font-size(1.7);
       }
     }
   }

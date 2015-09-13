@@ -29,16 +29,12 @@
   line-height: 1.2;
   @include opacity(0);
   @include translate3d(0, 0, 0);
-  @include transition(#{margin 0.3s ease, opacity 0.3s ease});
+  @include transition(#{opacity 0.3s ease});
 
-  &.top       { margin-top:   0;       }
-  &.right     { margin-left:  0;       }
-  &.bottom    { margin-top:   0;       }
-  &.left      { margin-left:  0;       }
-  &.in.top    { margin-top:  -0.273em; }
-  &.in.right  { margin-left:  0.273em; }
-  &.in.bottom { margin-top:   0.273em; }
-  &.in.left   { margin-left: -0.273em; }
+  &.top    { margin-top:  -0.273em; }
+  &.right  { margin-left:  0.273em; }
+  &.bottom { margin-top:   0.273em; }
+  &.left   { margin-left: -0.273em; }
 }
 
 .tooltip-inner {

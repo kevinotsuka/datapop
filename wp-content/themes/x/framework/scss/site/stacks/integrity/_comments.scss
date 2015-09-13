@@ -17,7 +17,9 @@
 // Comment Container
 // =============================================================================
 
-.x-comments-area {  }
+.x-comments-area {
+  margin: 4em 0 0;
+}
 
 
 
@@ -25,7 +27,7 @@
 // =============================================================================
 
 .h-comments-title {
-  margin: 1.15em 0 0.5em;
+  margin: 0 0 0.5em;
   font-size: 285.7%;
   line-height: 1.05;
 
@@ -277,8 +279,6 @@ article.comment {
 // =============================================================================
 
 #respond {
-  margin-bottom: 3.5em;
-
   .required {
     font-weight: 300;
     color: $accentColor;

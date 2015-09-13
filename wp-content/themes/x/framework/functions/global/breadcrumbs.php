@@ -20,7 +20,7 @@ if ( ! function_exists( 'x_get_breadcrumb_delimiter' ) ) :
 
     $is_ltr = ! is_rtl();
 
-    return ' <span class="delimiter"><i class="x-icon-angle-' . ( ( $is_ltr ) ? 'right' : 'left' ) . '"></i></span> ';
+    return ' <span class="delimiter"><i class="x-icon-angle-' . ( ( $is_ltr ) ? 'right' : 'left' ) . '" data-x-icon="&#x' . ( ( $is_ltr ) ? 'f105' : 'f104' ) . ';"></i></span> ';
 
   }
 endif;
@@ -33,7 +33,7 @@ endif;
 if ( ! function_exists( 'x_get_breadcrumb_home_text' ) ) :
   function x_get_breadcrumb_home_text() {
 
-    return '<span class="home"><i class="x-icon-home"></i></span>';
+    return '<span class="home"><i class="x-icon-home" data-x-icon="&#xf015;"></i></span>';
 
   }
 endif;
@@ -72,7 +72,7 @@ endif;
 if ( ! function_exists( 'x_breadcrumbs' ) ) :
   function x_breadcrumbs() {
 
-    if ( x_get_option( 'x_breadcrumb_display', 1 ) ) {
+    if ( x_get_option( 'x_breadcrumb_display', '1' ) ) {
 
       GLOBAL $post;
 
@@ -85,7 +85,12 @@ if ( ! function_exists( 'x_breadcrumbs' ) ) :
       $current_after  = x_get_breadcrumb_current_after();
       $page_title     = get_the_title();
       $blog_title     = get_the_title( get_option( 'page_for_posts', true ) );
-      $post_parent    = $post->post_parent;
+
+      if ( ! is_404() ) {
+        $post_parent = $post->post_parent;
+      } else {
+        $post_parent = '';
+      }
 
       if ( X_WOOCOMMERCE_IS_ACTIVE ) {
         $shop_url   = x_get_shop_link();
@@ -163,9 +168,9 @@ if ( ! function_exists( 'x_breadcrumbs' ) ) :
         } elseif ( x_is_buddypress() ) {
 
           if ( bp_is_group() ) {
-            echo '<a href="' . bp_get_groups_directory_permalink() . '">' . x_get_option( 'x_buddypress_groups_title', 'Groups' ) . '</a>' . $delimiter . $current_before . x_buddypress_get_the_title() . $current_after;
+            echo '<a href="' . bp_get_groups_directory_permalink() . '">' . x_get_option( 'x_buddypress_groups_title', __( 'Groups', '__x__' ) ) . '</a>' . $delimiter . $current_before . x_buddypress_get_the_title() . $current_after;
           } elseif ( bp_is_user() ) {
-            echo '<a href="' . bp_get_members_directory_permalink() . '">' . x_get_option( 'x_buddypress_members_title', 'Members' ) . '</a>' . $delimiter . $current_before . x_buddypress_get_the_title() . $current_after;
+            echo '<a href="' . bp_get_members_directory_permalink() . '">' . x_get_option( 'x_buddypress_members_title', __( 'Members', '__x__' ) ) . '</a>' . $delimiter . $current_before . x_buddypress_get_the_title() . $current_after;
           } else {
             echo $current_before . x_buddypress_get_the_title() . $current_after;
           }

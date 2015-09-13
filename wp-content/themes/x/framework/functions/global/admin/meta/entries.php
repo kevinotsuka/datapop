@@ -135,7 +135,7 @@ function x_add_page_meta_boxes() {
         ),
         array(
           'name' => __( 'Optional Background Video', '__x__' ),
-          'desc' => __( 'Input the URL to your .mp4 video file to display an optional background video.', '__x__' ),
+          'desc' => __( 'Include your video URL(s) here. If using multiple sources, separate them using the pipe character (|) and place fallbacks towards the end (i.e. .webm then .mp4 then .ogv).', '__x__' ),
           'id'   => '_x_slider_above_bg_video',
           'type' => 'text',
           'std'  => ''
@@ -199,7 +199,7 @@ function x_add_page_meta_boxes() {
         ),
         array(
           'name' => __( 'Optional Background Video', '__x__' ),
-          'desc' => __( 'Input the URL to your .mp4 video file to display an optional background video.', '__x__' ),
+          'desc' => __( 'Include your video URL(s) here. If using multiple sources, separate them using the pipe character (|) and place fallbacks towards the end (i.e. .webm then .mp4 then .ogv).', '__x__' ),
           'id'   => '_x_slider_below_bg_video',
           'type' => 'text',
           'std'  => ''
@@ -534,12 +534,33 @@ function x_add_post_meta_boxes() {
           'std'  => ''
         ),
         array(
-          'name'    => __( 'Index Featurd Post Size', '__x__' ),
+          'name'    => __( 'Index Featured Post Size', '__x__' ),
           'desc'    => __( 'If the "Index Featured Post Layout" option above is selected, select a size for the output.', '__x__' ),
           'id'      => '_x_ethos_index_featured_post_size',
           'type'    => 'radio',
           'std'     => 'Skinny',
           'options' => array( 'Big', 'Skinny' )
+        ),
+        array(
+          'name' => __( 'Post Carousel Display', '__x__' ),
+          'desc' => __( 'Display this post in the Post Carousel if you have "Featured" selected in the Customizer.', '__x__' ),
+          'id'   => '_x_ethos_post_carousel_display',
+          'type' => 'checkbox',
+          'std'  => '',
+        ),
+        array(
+          'name' => __( 'Post Slider Display &ndash; Blog', '__x__' ),
+          'desc' => __( 'Display this post in the Blog Post Slider if you have "Featured" selected in the Customizer.', '__x__' ),
+          'id'   => '_x_ethos_post_slider_blog_display',
+          'type' => 'checkbox',
+          'std'  => '',
+        ),
+        array(
+          'name' => __( 'Post Slider Display &ndash; Archives', '__x__' ),
+          'desc' => __( 'Display this post in the Archives Post Slider if you have "Featured" selected in the Customizer.', '__x__' ),
+          'id'   => '_x_ethos_post_slider_archives_display',
+          'type' => 'checkbox',
+          'std'  => '',
         )
       )
     );

@@ -21,5 +21,4 @@
       <?php x_portfolio_item_social(); ?>
     </div>
   </div>
-  <?php x_google_authorship_meta(); ?>
 </article>
