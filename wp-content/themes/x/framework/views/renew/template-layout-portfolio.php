@@ -14,7 +14,6 @@
     <div class="<?php x_main_content_class(); ?>" role="main">
 <?php x_get_view( 'global', '_content', 'the-content' ); ?>
 
-
       <?php x_get_view( 'global', '_portfolio' ); ?>
 
     </div>
