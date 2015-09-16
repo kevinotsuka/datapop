@@ -60,7 +60,8 @@ $breadcrumbs        = x_get_option( 'x_breadcrumb_display', '1' );
 
             $meta  = x_get_taxonomy_meta();
             $title = ( $meta['archive-title'] != '' ) ? $meta['archive-title'] : __( 'Category Archive', '__x__' );
-
+            <h1 class="h-landmark"><?php single_cat_title(); ?> </span></h1>
+            <p class="cat-desc"><?php echo category_description(); ?></p>
             ?>
 
             <h1 class="h-landmark"><span><?php echo $title; ?></span></h1>
