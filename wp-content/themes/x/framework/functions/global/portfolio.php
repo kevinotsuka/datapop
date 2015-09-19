@@ -122,16 +122,11 @@ function x_portfolio_filters() {
 
     $terms = get_terms( 'portfolio-category' );
 
-  } elseif ( //$one_filter && 
-  ! $all_categories ) { // 2
+  } elseif ( $one_filter && ! $all_categories ) { // 2
 
     $terms = array();
     foreach ( $filters as $filter ) {
-      //$children = get_term_children( $filter, 'portfolio-category' );
-      //$terms    = array_merge( $children, $terms );
-      $parent   = array( $filter );
       $children = get_term_children( $filter, 'portfolio-category' );
-      $terms    = array_merge( $parent, $terms );
       $terms    = array_merge( $children, $terms );
     }
     $terms = get_terms( 'portfolio-category', array( 'include' => $terms ) );
