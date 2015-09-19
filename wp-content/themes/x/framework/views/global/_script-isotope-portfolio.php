@@ -55,9 +55,10 @@ $is_rtl = is_rtl();
     $optionLinks.click(function() {
       var $this = $(this);
       if ( $this.hasClass('selected') ) {
-      $optionSet.find('.selected').removeClass('selected');
+        return false;
       }
       var $optionSet = $this.parents('.option-set');
+      $optionSet.find('.selected').removeClass('selected');
       $this.addClass('selected');
       <?php if ( $stack == 'ethos' ) : ?>
         $('.x-portfolio-filter-label').text($this.text());
