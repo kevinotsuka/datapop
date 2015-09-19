@@ -60,7 +60,7 @@ $is_rtl = is_rtl();
       var $optionSet = $this.parents('.option-set');
       $optionSet.find('.selected').removeClass('selected');
       $this.addClass('selected');
-      <?php if ( $stack == 'ethos' ) : ?>
+      <?php if ( $stack == 'renew' ) : ?>
         $('.x-portfolio-filter-label').text($this.text());
       <?php endif; ?>
       var options = {},
