@@ -19,7 +19,12 @@
 add_filter( 'x_enqueue_parent_stylesheet', '__return_true' );
 
 
-
 // Additional Functions
 // =============================================================================
 
+function x_filter_by_category( $query ) {
+if ( $query->is_home() && $query->is_main_query() && isset($_GET['cat_select']) ) {
+$query->set( 'cat', implode( ',', $_GET['cat_select'] ) );
+}
+}
+add_action('pre_get_posts', 'x_filter_by_category');
