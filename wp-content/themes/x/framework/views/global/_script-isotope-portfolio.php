@@ -55,7 +55,7 @@ $is_rtl = is_rtl();
     $optionLinks.click(function() {
       var $this = $(this);
       if ( $this.hasClass('selected') ) {
-        return false;
+          $optionSet.find('.selected').removeClass('selected');
       }
       var $optionSet = $this.parents('.option-set');
       $optionSet.find('.selected').removeClass('selected');
