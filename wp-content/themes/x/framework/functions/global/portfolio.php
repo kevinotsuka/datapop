@@ -151,7 +151,7 @@ function x_portfolio_filters() {
 
   if ( $stack == 'integrity' ) {
     $button_content = '<i class="x-icon-sort" data-x-icon="&#xf0dc;"></i> <span>' . x_get_option( 'x_integrity_portfolio_archive_sort_button_text', __( 'Sort Portfolio', '__x__' ) ) . '</span>';
-  } elseif ( $stack == 'ethos' ) {
+  } elseif ( $stack == 'renew' ) {
     $button_content = '<i class="x-icon-chevron-down" data-x-icon="&#xf078;"></i>';
   } else {
     $button_content = '<i class="x-icon-plus" data-x-icon="&#xf067;"></i>';
@@ -163,7 +163,7 @@ function x_portfolio_filters() {
   //
 
   if ( $disable_filters != 'on' ) {
-    if ( $stack != 'ethos' ) {
+    if ( $stack != 'renew' ) {
 
     ?>
 
@@ -179,7 +179,7 @@ function x_portfolio_filters() {
         </li>
       </ul>
 
-    <?php } elseif ( $stack == 'ethos' ) { ?>
+    <?php } elseif ( $stack == 'renew' ) { ?>
 
       <ul class="option-set unstyled" data-option-key="filter">
         <li>
