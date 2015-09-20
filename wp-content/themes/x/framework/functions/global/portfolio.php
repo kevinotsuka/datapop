@@ -127,7 +127,11 @@ function x_portfolio_filters() {
     $terms = array();
     foreach ( $filters as $filter ) {
       $children = get_term_children( $filter, 'portfolio-category' );
+        if ($children == 'x-portfolio-b94ad99e5dc27b3365d5d2aa77d73ff0') {
+          $partent = 'x-portfolio-b94ad99e5dc27b3365d5d2aa77d73ff0';
+        };
       $terms    = array_merge( $children, $terms );
+      $terms    = array_merge( $parent, $terms );
     }
     $terms = get_terms( 'portfolio-category', array( 'include' => $terms ) );
 
