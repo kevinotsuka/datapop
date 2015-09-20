@@ -173,7 +173,7 @@ function x_portfolio_filters() {
           <ul class="x-portfolio-filters-menu unstyled">
             <li><a href="#" data-option-value="*" class="x-portfolio-filter selected"><?php _e( 'All', '__x__' ); ?></a></li>
             <?php foreach ( $terms as $term ) { if ($term != 'Advocacy') { ?>
-              <li><a href="#" data-option-value=".x-portfolio-<?php echo md5( $term->slug ); ?>" id="<?php echo $term; ?>" class="x-portfolio-filter"><?php echo $term->name; ?></a></li>
+              <li><a href="#" data-option-value=".x-portfolio-<?php echo md5( $term->slug ); ?>" id="<?php echo md5($term); ?>" class="x-portfolio-filter"><?php echo $term->name; ?></a></li>
             <?php } } ?>
           </ul>
         </li>
