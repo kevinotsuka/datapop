@@ -48,30 +48,42 @@ $is_rtl = is_rtl();
       });
     });
 
+  // flatten object by concatting values//
+  function concatValues( obj ) {
+  var value = '';
+  for ( var prop in obj ) {
+    value += obj[ prop ];
+  }
+  return value;
+  }
+  //end custom function//
+
     $(window).smartresize(function() {
       $container.isotope({  });
     });
 
+    var options = {};//moving options up here outside of function
+
     $optionLinks.click(function() {
-      var $this = $(this);
+      var $this = $(this);//this = this
       if ( $this.hasClass('selected') ) {
         return false;
       }
-      var $optionSet = $this.parents('.option-set');
-      $optionSet.find('.selected').removeClass('selected');
+      var $optionSet = $this.parents('.option-set');//set parent
+      $optionSet.find('.selected');
       $this.addClass('selected');
-      <?php if ( $stack == 'ethos' ) : ?>
-        $('.x-portfolio-filter-label').text($this.text());
-      <?php endif; ?>
-      var options = {},
-          key     = $optionSet.attr('data-option-key'),
-          value   = $this.attr('data-option-value');
-      value        = value === 'false' ? false : value;
-      options[key] = value;
+      <?php if ( $stack == 'ethos' ) : ?>//ignore
+        $('.x-portfolio-filter-label').text($this.text());//ignore
+      <?php endif; ?>//ignore
+          var key     = $optionSet.attr('data-option-key');//,//set key
+          options[key]   = $this.attr('data-option-value');//set filter
+          var value = concatValues(options);
+      //value        = value === 'false' ? false : value;
+      //options[key] = value;
       if ( key === 'layoutMode' && typeof changeLayoutMode === 'function' ) {
         changeLayoutMode( $this, options );
       } else {
-        $container.isotope( options );
+        $container.isotope( value );
       }
       return false;
     });
