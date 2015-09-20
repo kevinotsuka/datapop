@@ -60,8 +60,8 @@ $is_rtl = is_rtl();
         //return false;
       //}
       var $optionSet = $this.parents('.option-set');//set parent
-      //$optionSet.find('.selected');
-      //$this.addClass('selected');
+      $optionSet.find('.selected').removeClass('selected');
+      $this.addClass('selected');
       //<?php if ( $stack == 'ethos' ) : ?>//ignore
         //$('.x-portfolio-filter-label').text($this.text());//ignore
       //<?php endif; ?>//ignore
