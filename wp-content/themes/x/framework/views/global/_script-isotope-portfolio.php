@@ -54,14 +54,14 @@ $is_rtl = is_rtl();
 
     var options = {};//moving options up here outside of function
 
-    $('.options').click(function() {
+    $optionLinks.click(function() {
       var $this = $(this);//this = this
       //if ( $this.hasClass('selected') ) {
         //return false;
       //}
       var $optionSet = $this.parents('.option-set');//set parent
-      //$optionSet.find('.selected').removeClass('selected');
-      //$this.addClass('selected');
+      $optionSet.find('.selected').removeClass('selected');
+      $this.addClass('selected');
       //<?php if ( $stack == 'ethos' ) : ?>//ignore
         //$('.x-portfolio-filter-label').text($this.text());//ignore
       //<?php endif; ?>//ignore
