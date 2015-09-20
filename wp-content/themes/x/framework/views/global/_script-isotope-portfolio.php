@@ -70,9 +70,9 @@ $is_rtl = is_rtl();
           var value = concatValues( options );
       //value        = value === 'false' ? false : value;
       //options[key] = value;
-      //if ( key === 'layoutMode' && typeof changeLayoutMode === 'function' ) {
-        //changeLayoutMode( $this, value );
-      //} else {
+      if ( key === 'layoutMode' && typeof changeLayoutMode === 'function' ) {
+        changeLayoutMode( $this, value );
+      } else {
         $container.isotope({filter: value });
       }
       return false;
