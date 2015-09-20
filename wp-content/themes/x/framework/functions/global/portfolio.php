@@ -181,7 +181,7 @@ function x_portfolio_filters() {
               <li><a href="#" data-option-value=".x-portfolio-b94ad99e5dc27b3365d5d2aa77d73ff0" class="x-portfolio-filter">Advocacy</a></li>
           </ul>
         </li>
-          <!--- <a href="#" class="x-portfolio-filters"><?php //echo $button_content; ?></a> ---->
+          <!--- <a href="#" class="x-portfolio-filters"><?php //echo $button_content; ?></a> -->
       </ul>
         
     <?php } elseif ( $stack == 'ethos' ) { ?>
