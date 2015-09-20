@@ -127,11 +127,7 @@ function x_portfolio_filters() {
     $terms = array();
     foreach ( $filters as $filter ) {
       $children = get_term_children( $filter, 'portfolio-category' );
-        if ($children == 'x-portfolio-b94ad99e5dc27b3365d5d2aa77d73ff0') {
-          $partent = 'x-portfolio-b94ad99e5dc27b3365d5d2aa77d73ff0';
-        };
       $terms    = array_merge( $children, $terms );
-      $terms    = array_merge( $parent, $terms );
     }
     $terms = get_terms( 'portfolio-category', array( 'include' => $terms ) );
 
@@ -179,6 +175,16 @@ function x_portfolio_filters() {
             <?php foreach ( $terms as $term ) { ?>
               <li><a href="#" data-option-value=".x-portfolio-<?php echo md5( $term->slug ); ?>" class="x-portfolio-filter"><?php echo $term->name; ?></a></li>
             <?php } ?>
+          </ul>
+        </li>
+      </ul>
+
+      <ul class="option-set unstyled" data-option-key="type">
+        <li>
+          <a href="#" class="x-portfolio-filters"><?php echo $button_content; ?></a>
+          <ul class="x-portfolio-filters-menu unstyled">
+            <li><a href="#" data-option-value="*" class="x-portfolio-filter selected"><?php _e( 'All', '__x__' ); ?></a></li>
+              <li><a href="#" data-option-value=".x-portfolio-b94ad99e5dc27b3365d5d2aa77d73ff0" class="x-portfolio-filter">Advocacy</a></li>
           </ul>
         </li>
       </ul>
