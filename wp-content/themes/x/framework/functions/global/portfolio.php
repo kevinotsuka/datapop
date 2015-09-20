@@ -168,22 +168,20 @@ function x_portfolio_filters() {
     ?>
 
       <ul class="option-set unstyled">
-        <li data-option-key="filter">
+        <li>
           <a href="#" class="x-portfolio-filters"><?php echo $button_content; ?></a>
-          <ul class="x-portfolio-filters-menu unstyled">
+          <ul class="x-portfolio-filters-menu unstyled" data-option-key="filter">
             <li><a href="#" data-option-value="*" class="x-portfolio-filter selected"><?php _e( 'All', '__x__' ); ?></a></li>
-            <?php foreach ( $terms as $term ) { if (md5( $term->slug ) != 'b94ad99e5dc27b3365d5d2aa77d73ff0') { ?>
+            <?php foreach ( $terms as $term ) { if (md5( $term->slug ) != 'b94ad99e5dc27b3365d5d2aa77d73ff0' && != 'd7a9063aea253029c5261edde6aa3cd6' && !='c185ddac8b5a8f5aa23c5b80bc12d214') { ?>
               <li><a href="#" data-option-value=".x-portfolio-<?php echo md5( $term->slug ); ?>" id="<?php echo md5($term->slug); ?>" class="x-portfolio-filter"><?php echo $term->name; ?></a></li>
             <?php } } ?>
           </ul>
-        </li>
-        <li data-option-key="type">
-          <a href="#" class="x-portfolio-filters"><?php echo $button_content; ?></a>
-          <ul class="x-portfolio-filters-menu unstyled">
+          <ul class="x-portfolio-filters-menu unstyled" data-option-key="type">
             <li><a href="#" data-option-value="*" class="x-portfolio-filter selected"><?php _e( 'All', '__x__' ); ?></a></li>
               <li><a href="#" data-option-value=".x-portfolio-b94ad99e5dc27b3365d5d2aa77d73ff0" class="x-portfolio-filter">Advocacy</a></li>
           </ul>
         </li>
+          <!--- <a href="#" class="x-portfolio-filters"><?php //echo $button_content; ?></a> ---->
       </ul>
         
     <?php } elseif ( $stack == 'ethos' ) { ?>
