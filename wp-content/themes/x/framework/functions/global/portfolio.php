@@ -179,8 +179,6 @@ function x_portfolio_filters() {
           <ul class="x-portfolio-filters-menu unstyled" data-option-key="type">
             <li><a href="#" data-option-value="*" class="x-portfolio-filter selected"><?php _e( 'All', '__x__' ); ?></a></li>
               <li><a href="#" data-option-value=".x-portfolio-b94ad99e5dc27b3365d5d2aa77d73ff0" class="x-portfolio-filter">Advocacy</a></li>
-              <li><a href="#" data-option-value=".x-portfolio-c185ddac8b5a8f5aa23c5b80bc12d214" class="x-portfolio-filter">Training</a></li>
-              <li><a href="#" data-option-value=".x-portfolio-d7a9063aea253029c5261edde6aa3cd6" class="x-portfolio-filter">Research</a></li>
           </ul>
         </li>
           <!--- <a href="#" class="x-portfolio-filters"><?php //echo $button_content; ?></a> -->
