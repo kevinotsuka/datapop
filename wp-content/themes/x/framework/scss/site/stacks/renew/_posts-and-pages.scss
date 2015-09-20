@@ -460,6 +460,10 @@ a.entry-thumb:hover {
 
   .entry-featured {
     overflow: hidden;
+
+    &:hover .entry-cover {
+      @include translate(0, 0);
+    }
   }
 
   .entry-info {

@@ -14,7 +14,7 @@
 
     <div class="entry-featured">
       <?php x_portfolio_item_featured_content(); ?>
-      <div class="entry-cover">
+      <div class="entry-cover-nohover">
         <div class="entry-cover-content">
           <span><?php echo get_post_meta( get_the_ID(), '_x_portfolio_media', true ); ?></span>
           <h2 class="entry-title entry-title-portfolio">
