@@ -54,19 +54,19 @@ $is_rtl = is_rtl();
 
     var options = {};//moving options up here outside of function
 
-    $optionLinks.click(function() {
+    $('.options').click(function() {
       var $this = $(this);//this = this
       //if ( $this.hasClass('selected') ) {
         //return false;
       //}
       var $optionSet = $this.parents('.option-set');//set parent
-      $optionSet.find('.selected').removeClass('selected');
-      $this.addClass('selected');
+      //$optionSet.find('.selected').removeClass('selected');
+      //$this.addClass('selected');
       //<?php if ( $stack == 'ethos' ) : ?>//ignore
         //$('.x-portfolio-filter-label').text($this.text());//ignore
       //<?php endif; ?>//ignore
-          var key     = $optionSet.attr('data-option-key');//,//set key
-          options[ key ]   = $this.attr('data-option-value');//set filter
+          var key = $optionSet.attr('data-option-key');//,//set key
+          options[ key ] = $this.attr('data-option-value');//set filter
           var value = concatValues( options );
       //value        = value === 'false' ? false : value;
       //options[key] = value;
@@ -77,6 +77,22 @@ $is_rtl = is_rtl();
       }
       return false;
     });
+  //
+ // change is-checked class on buttons
+  $('.option-set').each( function( i, optionSet ) {
+    var $optionSet = $( optionSet );
+    $optionSet.on( 'click', function() {
+      $optionSet.find('.selected').removeClass('selected');
+      $( this ).addClass('selected');
+    });
+  });
+  //end custom function//
+
+    $('.x-portfolio-filters').click(function() {
+      $(this).parent().find('ul').slideToggle(600, 'easeOutExpo');
+    });
+
+  });
 
   // flatten object by concatting values//
   function concatValues( obj ) {
@@ -86,12 +102,5 @@ $is_rtl = is_rtl();
   }
   return value;
   }
-  //end custom function//
-
-    $('.x-portfolio-filters').click(function() {
-      $(this).parent().find('ul').slideToggle(600, 'easeOutExpo');
-    });
-
-  });
 
 </script>
