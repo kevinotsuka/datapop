@@ -71,7 +71,8 @@ $breadcrumbs        = x_get_option( 'x_breadcrumb_display', '1' );
 
           <?php elseif ( is_author() ) : ?>
 
-            <h1 class="h-landmark"><span><?php _e( 'Auhtor Posts', '__x__' ); ?></span></h1>
+            <h1 class="h-landmark"><span><?php echo get_the_author(); ?></span></h1>
+            <p class="author-description"><span><?php echo get_the_author_description(); ?></span></p>
 
           <?php elseif ( is_404() ) : ?>
 
