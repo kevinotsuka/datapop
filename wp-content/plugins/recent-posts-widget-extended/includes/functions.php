@@ -38,7 +38,7 @@ function rpwe_get_default_args() {
 		'thumb'            => true,
 		'thumb_height'     => 45,
 		'thumb_width'      => 45,
-		'thumb_default'    => 'http://placehold.it/45x45/f0f0f0/ccc',
+		'thumb_default'    => 'http://datapop.staging.wpengine.com/wp-content/uploads/2015/09/datapoplogo.png',
 		'thumb_align'      => 'rpwe-alignleft',
 		'date'             => true,
 		'date_relative'    => false,
