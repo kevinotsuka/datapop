@@ -15,7 +15,6 @@
 <?php x_get_view( 'global', '_content', 'the-content' ); ?>
 
     </div>
-          <?php x_get_view( 'global', '_mfilters' ); ?>
       <?php x_get_view( 'global', '_portfolio' ); ?>
 
     <?php get_sidebar(); ?>
