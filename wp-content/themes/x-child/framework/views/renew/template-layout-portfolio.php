@@ -9,10 +9,11 @@
 ?>
 
 <?php get_header(); ?>
-<?php x_get_view( 'global', '_content', 'the-content' ); ?>
 
   <div class="x-container max width offset">
     <div class="<?php x_main_content_class(); ?>" role="main">
+<div class="k-content">
+<?php x_get_view( 'global', '_content', 'the-content' ); ?>
 
 <div class="options">
       <ul class= "unstyled">
@@ -29,7 +30,7 @@
         </li>
       </ul>
     </div>
-
+   </div>
       <?php x_get_view( 'global', '_portfolio' ); ?>
 
     </div>
