@@ -88,7 +88,7 @@ $is_rtl = is_rtl();
   });
   //end custom function//
 
-    $('.x-portfolio-filters').click(function() {
+    $('.x-portfolio-filters-2').click(function() {
       $(this).parent().find('ul').slideToggle(600, 'easeOutExpo');
     });
 
